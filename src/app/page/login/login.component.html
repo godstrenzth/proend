@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoginTDK</title>
+    <style>
+        *{
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: sans-serif;
+        }
+
+        body {
+            background-image: url(https://wallpapers.com/images/featured/taekwondo-2ucqu5sad3327aam.jpg);
+            background-position: center ;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #272727;
+        }
+
+        .box{
+          position: relative;
+          width: 380px;
+          height: 470px;
+          overflow: hidden;
+          background: #1c1c1c;
+          border-radius: 8px;
+        }
+
+        .box::before{
+          width: 380px;
+          height: 420px;
+          content:'';
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          transform-origin: bottom right;
+          background: linear-gradient(0deg,transparent,transparent,#4da9e6,#4da9e6,#4da9e6);
+          z-index: 1;
+          animation: animate 6s linear infinite;
+
+        }
+
+        .box::after{
+          width: 380px;
+          height: 420px;
+          content:'' ;
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          transform-origin: bottom right;
+          background: linear-gradient(0deg,transparent,transparent,#068fea,#258ed3,#4da9e6);
+          z-index: 1;
+          animation: animate 6s linear infinite;
+          animation-delay:  -3s;
+
+        }
+
+        .borderLi{
+          position: absolute;
+          top: 0;
+          inset: 0;
+        }
+        .borderLi::before{
+          width: 380px;
+          height: 420px;
+          content:"" ;
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          transform-origin: bottom right;
+          background: linear-gradient(0deg,transparent,transparent,#c2279d,#c2279d,#c2279d);
+          z-index: 1;
+          animation: animate 6s linear infinite;
+          animation-delay:  -1.5s;
+        }
+
+        .borderLi::after{
+          width: 380px;
+          height: 420px;
+          content:"" ;
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          transform-origin: bottom right;
+          background: linear-gradient(0deg,transparent,transparent,#c2279d,#c2279d,#c2279d);
+          z-index: 1;
+          animation: animate 6s linear infinite;
+          animation-delay:  -4.5s;
+        }
+        @keyframes animate{
+
+          0%
+          {
+            transform: rotate(0deg);
+          }
+
+          100%
+          {
+            transform: rotate(360deg);
+          }
+
+        }
+
+        .box form
+        {
+          position: absolute;
+          inset: 4px;
+          background-color: #222;
+          padding: 50px 40px;
+          border-radius: 8px;
+          z-index: 2;
+          display: flex;
+          flex-direction: column;
+
+        }
+
+        .box form h2{
+          color: #fff;
+          font-weight: 500;
+          text-align: center;
+          letter-spacing: 0.1em;
+        }
+
+        .box form .inputBox{
+          position: relative;
+          width: 300px;
+          margin-top: 35px;
+
+        }
+
+        .box form .inputBox input{
+          position: relative;
+          width: 100%;
+          padding: 20px 10px 10px;
+          background: transparent;
+          outline: none;
+          color: #030303;
+          box-shadow: none;
+          font-size: 1em;
+          font-weight: 700;
+          letter-spacing: 0.05em;
+          transition: 0.5s;
+          z-index: 10;
+          border: none;
+
+        }
+        .box form .inputBox span{
+          position: absolute;
+          left: 0;
+          padding: 20px 0px 10px;
+          pointer-events: none;
+          color: #8f8f8f;
+          font-size: 1em;
+          letter-spacing: 0.05em;
+          transition: 0.5s;
+
+        }
+        .box form .inputBox input:valid ~ span,
+        .box form .inputBox input:focus ~ span{
+          color: #fff;
+          font-size: 0.75em;
+          transform: translateY(-34px);
+        }
+
+        .box form .inputBox i{
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          height: 2px;
+          background: #fff;
+          border-radius: 4px;
+          overflow: hidden;
+          transition: 0.5s;
+          pointer-events: none;
+
+        }
+        .box form .inputBox input:valid ~ i,
+        .box form .inputBox input:focus ~ i{
+          height: 44px;
+
+        }
+
+        .box form .links{
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .box form .links a{
+          margin-top: 10px 0;
+          font-size: 0.75em;
+          color: #8f8f8f;
+          text-decoration: none;
+        }
+        .box form .links a:hover,
+        .box form .links a:nth-child(2)
+        {
+          color: #fff;
+        }
+
+        .box form input[type="submit"]
+        {
+          border: none;
+          outline: none;
+          padding: 9px 25px;
+          background: #fff;
+          cursor: pointer;
+          font-size: 0.9em;
+          border-radius: 4px;
+          width: 100%;
+          margin-top: 10px;
+          font-weight: 600;
+        }
+
+        .box form input[type="submit"]:active
+        {
+          opacity: 0.8;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div class="box">
+  <span class="borderLi"></span>
+    <form>
+      <h2>TDK compete</h2>
+        <div class="inputBox">
+          <input type="text" required="required">
+          <span>Username</span>
+          <i></i>
+        </div>
+        <div class="inputBox">
+          <input type="password" required="required">
+          <span>Password</span>
+          <i></i>
+        </div>
+        <div class="links" style="margin-top: 10px;">
+          <a href="#">Forget Password</a>
+          <a href="#">Sign up</a>
+          <i></i>
+        </div>
+        <mat-radio-group  >
+          <mat-radio-button color="primary" value="1">Athlete</mat-radio-button>
+          <mat-radio-button color="primary" value="2">Referee</mat-radio-button>
+          <mat-radio-button color="primary" value="2">Host</mat-radio-button>
+        </mat-radio-group>
+
+        <div style="margin-top: 5px;">
+          <input type="submit" value="Login">
+
+        </div>
+
+        <!-- <button type="submit">Login</button> -->
+    </form>
+</div>
+
+</body>
+</html>
