@@ -1,0 +1,164 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+    background-image: url(https://wallpaperaccess.com/full/232985.jpg);
+    background-position: center ;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #272727;
+    align-items: center;
+}
+
+.box{
+  position: relative;
+  width: 530px;
+  height: 680px;
+  overflow: hidden;
+  background: #1c1c1c;
+  border-radius: 8px;
+}
+
+.box::before{
+  width: 600px;
+  height: 550px;
+  content:'';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  transform-origin: bottom right;
+  background: linear-gradient(0deg,transparent,transparent,#d6651e,#d6651e,#d6651e);
+  z-index: 1;
+  animation: animate 6s linear infinite;
+
+}
+
+.box::after{
+  width: 600px;
+  height: 550px;
+  content:'' ;
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  transform-origin: bottom right;
+  background: linear-gradient(0deg,transparent,transparent,#d6651e,#d6651e,#d6651e);
+  z-index: 1;
+  animation: animate 6s linear infinite;
+  animation-delay:  -3s;
+
+}
+
+.borderLi{
+  position: absolute;
+  top: 0;
+  inset: 0;
+}
+.borderLi::before{
+  width: 600px;
+  height: 550px;
+  content:"" ;
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  transform-origin: bottom right;
+  background: linear-gradient(0deg,transparent,transparent,#23d52f,#23d52f,#23d52f);
+  z-index: 1;
+  animation: animate 6s linear infinite;
+  animation-delay:  -1.5s;
+}
+
+.borderLi::after{
+  width: 600px;
+  height: 550px;
+  content:"" ;
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  transform-origin: bottom right;
+  background: linear-gradient(0deg,transparent,transparent,#23d52f,#23d52f,#23d52f);
+  z-index: 1;
+  animation: animate 6s linear infinite;
+  animation-delay:  -4.5s;
+}
+@keyframes animate{
+
+  0%
+  {
+    transform: rotate(0deg);
+  }
+
+  100%
+  {
+    transform: rotate(360deg);
+  }
+
+}
+
+.box form
+{
+  position: absolute;
+  inset: 4px;
+  background-color: #222;
+  padding: 50px 40px;
+  border-radius: 8px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.box form h2{
+  color: #fff;
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: 0.1em;
+  margin-bottom: 5px;
+}
+
+
+::ng-deep .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading {
+border-top-left-radius: var(--mdc-shape-small, 12px) !important;
+border-bottom-left-radius: var(--mdc-shape-small, 12px) !important;
+
+border-color:#23d52f ;
+}
+::ng-deep .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__notch {
+
+
+  border-color:#23d52f ;
+}
+
+
+::ng-deep .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing {
+  border-top-right-radius: var(--mdc-shape-small, 12px) !important;
+  border-bottom-right-radius: var(--mdc-shape-small, 12px) !important;
+
+  border-color:#23d52f ;
+}
+
+::ng-deep .mdc-text-field:not(.mdc-text-field-disabled) .mdc-floating-label{
+  color: #e74d4d;
+}
+
+::ng-deep .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input{
+  color: #ffffff;
+}
+
+
+::ng-deep .mat-mdc-select-value {
+    color:#fff;
+}
+
+::ng-deep .mat-mdc-icon-button.mat-mdc-button-base{
+  color: #fff;
+}
+::ng-deep .mat-mdc-select-arrow {
+  color: #fff;
+}
