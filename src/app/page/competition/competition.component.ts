@@ -1,8 +1,6 @@
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 
-import {MatTableDataSource} from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
 
 
 export interface PeriodicElement {
@@ -25,31 +23,24 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
 ];
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
-
+  selector: 'app-competition',
+  templateUrl: './competition.component.html',
+  styleUrls: ['./competition.component.scss']
 })
-export class HomeComponent  {
+export class CompetitionComponent {
   menu=1;
   input: any;
   @ViewChild('sidenav') sidenav:MatSidenav | undefined
-
-  constructor(private readonly elemant:ElementRef,private render:Renderer2,private route: ActivatedRoute) {
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns2: string[] = ['position', 'name', 'weight', 'symbol', 'edit',];
+  displayedColumns3: string[] = ['position', 'name', 'close'];
+  dataSource = ELEMENT_DATA;
+  constructor(private readonly elemant:ElementRef,private render:Renderer2) {
 
    }
-   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-   dataSource = new MatTableDataSource(ELEMENT_DATA);
+   editRow(a:any)
+   {
 
-   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.menu = +params['menu'] || 1;
-    });
-  }
-
-   applyFilter(event: Event) {
-     const filterValue = (event.target as HTMLInputElement).value;
-     this.dataSource.filter = filterValue.trim().toLowerCase();
    }
    search()
    {

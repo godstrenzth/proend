@@ -162,3 +162,22 @@ border-color:#23d52f ;
 ::ng-deep .mat-mdc-select-arrow {
   color: #fff;
 }
+
+
+.custom-file-label {
+
+  color: #fff; /* สีตัวอักษรของปุ่ม */
+  border-radius: 5px; /* รอบมุมของปุ่ม */
+  padding: 8px; /* ระยะห่างของข้อความภายในปุ่ม */
+  cursor: pointer; /* เปลี่ยน cursor เมื่อนำเมาส์มาวางที่ปุ่ม */
+  display: inline-block; /* เพื่อให้พื้นที่ของปุ่มขยายตามข้อความภายใน */
+  text-align: center; /* จัดข้อความในกลาง */
+  margin-left: 10px;
+
+}
+
+
+/* ปรับ padding ของ label เพื่อให้พื้นที่พอดีกับ input */
+
+
+

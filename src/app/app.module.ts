@@ -4,67 +4,61 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HeaderCComponent } from './component/header-c/header-c.component';
-import { HeaderSHComponent } from './component/header-sh/header-sh.component';
-import { FootComponent } from './component/foot/foot.component';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatCardModule} from '@angular/material/card';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatMenuModule} from '@angular/material/menu';
-import { ShopComponent } from './page/shop/shop.component';
-import { CusComponent } from './page/cus/cus.component';
-import { MatSelectionList } from '@angular/material/list';
-import{MatListModule}from'@angular/material/list';
-import { HttpClientModule } from '@angular/common/http';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import { DiaComponent } from './page/dia/dia.component';
-import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './page/login/login.component';
+import { FooterComponent } from './component/footer/footer.component';
+import { HeaderComponent } from './component/header/header.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { RegisterComponent } from './page/register/register.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import {  MatFormFieldModule } from '@angular/material/form-field';
-import { OrdercusComponent } from './page/ordercus/ordercus.component';
-import { LogshopComponent } from './page/logshop/logshop.component';
-
-
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatCardModule} from '@angular/material/card';
+import {MatSelectModule} from '@angular/material/select';
+import { ForgetComponent } from './page/forget/forget.component';
+import { ResetComponent } from './page/reset/reset.component';
+import { HomeComponent } from './page/home/home.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { CompetitionComponent } from './page/competition/competition.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 
 @NgModule({
-
   declarations: [
     AppComponent,
-    HeaderCComponent,
-    HeaderSHComponent,
-    FootComponent,
-    ShopComponent,
-    CusComponent,
-    DiaComponent,
     LoginComponent,
-    OrdercusComponent,
-    LogshopComponent,
-
-
-
-
+    FooterComponent,
+    HeaderComponent,
+    RegisterComponent,
+    ForgetComponent,
+    ResetComponent,
+    HomeComponent,
+    CompetitionComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
+    MatRadioModule,
     MatButtonModule,
-    MatCardModule,
-    MatDialogModule,
-    MatMenuModule,
-    MatListModule,
-    HttpClientModule,
-    MatProgressBarModule,
-    FormsModule,
-    MatInputModule,
+    MatDatepickerModule,
     MatFormFieldModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatCardModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatTabsModule
 
 
 
@@ -72,7 +66,6 @@ import { LogshopComponent } from './page/logshop/logshop.component';
 
   ],
   providers: [],
-  bootstrap: [AppComponent],
-
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

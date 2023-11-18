@@ -1,19 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CusComponent } from './page/cus/cus.component';
 import { LoginComponent } from './page/login/login.component';
-import { LogshopComponent } from './page/logshop/logshop.component';
-import { OrdercusComponent } from './page/ordercus/ordercus.component';
-
-import { ShopComponent } from './page/shop/shop.component';
+import { RegisterComponent } from './page/register/register.component';
+import { ForgetComponent } from './page/forget/forget.component';
+import { ResetComponent } from './page/reset/reset.component';
+import { HomeComponent } from './page/home/home.component';
+import { CompetitionComponent } from './page/competition/competition.component';
 
 const routes: Routes = [
-  {path:'cus',component:CusComponent},
-  {path:'shop',component:ShopComponent},
-  {path:'login',component:LoginComponent},
-  {path:'ordercus',component:OrdercusComponent},
-  {path:'loginshop',component:LogshopComponent},
-
+  {path: '',component:LoginComponent},
+  {path: 'login',component:LoginComponent},
+  {path: 'register',component:RegisterComponent},
+  {path: 'forget',component:ForgetComponent},
+  {path: 'reset',component:ResetComponent},
+  {path: 'home',component:HomeComponent},
+  {path: 'compete',component:CompetitionComponent},
 ];
 
 @NgModule({
