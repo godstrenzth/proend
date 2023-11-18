@@ -1,0 +1,149 @@
+<div class="row">
+  <div class="col-12"><img width="100%"  height="150px" style="background-size: cover;"src="https://sv1.picz.in.th/images/2023/03/22/emvOVI.png" alt=""></div>
+</div>
+
+<mat-toolbar class="fxLayout dark app-toolbar" style="width: 100%;height: 80px;flex-direction: row; justify-content: space-between;background-color: black ;color:ghostwhite;">
+  <div class="fxLayout" style="flex-direction: row; align-items: center;">
+    <mat-icon>shopping_bag</mat-icon>
+    <span>&nbsp;BeefBeef</span>
+  </div>
+  <div class="fxLayout" style="flex-direction: row;align-items: center;">
+    <mat-icon>home_app_logo</mat-icon>
+    <button mat-flat-button style="background-color: black;color: ghostwhite;"(click)="home()">Home</button>
+  </div>
+
+  <div class="fxLayout" style="flex-direction: row;align-items: center;">
+
+    <mat-icon >logout</mat-icon>
+    <button mat-flat-button style="background-color: black;color: ghostwhite;" (click)="logout()">Logout</button>
+
+  </div>
+</mat-toolbar>
+<div style="background-image: url(https://thumbs.dreamstime.com/b/brick-walls-neon-light-background-rays-glow-211376319.jpg);background-size: contain;">
+
+  <div style="display: flex;flex-direction: column;width: 80%;">
+
+  <div style="display: flex;flex-direction: row;">
+    <div style="width: 400x;">
+      <mat-selection-list  #sho [multiple]="false"  (selectionChange)="detail($event.options[0])">
+
+        <mat-list-option  style="width: 400px;height: 160px; background-color: rgba(148, 0, 211, 0.445);left:70%;border:3px solid rgb(0, 0, 0); padding:5px;" *ngFor="let sho of this.shopS" [value]="sho" >
+          <div>
+            <mat-label style="color: rgb(0, 255, 255);">Order: <span >{{sho.ioid}}</span></mat-label><br>
+            <mat-label style="color: rgb(0, 255, 255);">Customer ID: <span >{{sho.cid}}</span></mat-label><br>
+            <mat-label style="color: rgb(0, 255, 255);">Namecustomer: <span >{{sho.name}}</span></mat-label><br>
+            <mat-label style="color: rgb(0, 255, 255);">Phone: <span >{{sho.phone}}</span></mat-label><br>
+            <mat-label style="color: rgb(0, 255, 255);">State: <span >{{sho.status}}</span></mat-label><br>
+            <mat-label style="color: rgb(0, 255, 255);">Payment: <span >{{sho.payment}}</span></mat-label>
+            <!-- <span>Customer ID : {{sho.cid}}</span><br>
+            <span>namecustomer:{{sho.name}}</span><br>
+            <span>phone:{{sho.phone}}</span><br>
+            <span>state:{{sho.status}}</span><br>
+            <span>payment:{{sho.payment}}</span> -->
+
+          </div>
+
+        </mat-list-option>
+      </mat-selection-list>
+
+    </div>
+    <div>
+      <div *ngIf="selDE != undefined">
+        <div style="display: flex; flex-direction: column;">
+            <mat-card class="example-card" style="left:150%; width: 300px;border:10px solid rgb(0, 132, 255); padding:5px;">
+              <mat-card-header>
+                <mat-card-subtitle>order : {{selDE.ioid}}</mat-card-subtitle>
+                <mat-card-subtitle>Customer ID : {{selDE.cid}}</mat-card-subtitle>
+                <mat-card-title>namecustomer : {{selDE.name}}</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <span>phone : {{selDE.phone}}</span><br>
+                <span>address : {{selDE.address}}</span><br>
+                <span>state : {{selDE.status}}</span><br>
+                <span>payment:{{selDE.payment}}</span><br>
+                <span>orderlist:</span>
+                <div *ngFor="let order of this.ordereS;let i =index;let islast=last">
+                  <span>{{order.pname}} </span><br>
+                  <div *ngIf="islast == false">
+                    <span>&nbsp;&nbsp;&nbsp;count : {{order.count}}&nbsp;price : {{order.Price}}$</span>
+                  </div>
+
+                  <div *ngIf="islast == true">
+
+                    <span>Total:{{order.Total}} $</span>
+                  </div>
+
+                </div>
+                <br>
+
+
+                <mat-divider></mat-divider>
+              </mat-card-content>
+              <mat-card-actions>
+                <button mat-button color="primary" (click)="upstate(selDE.ioid)">change state shipped</button>
+                <button mat-button color="warn"(click)="unstate(selDE.ioid)">change state wait</button>
+              </mat-card-actions>
+              <mat-card-footer>
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+              </mat-card-footer>
+            </mat-card>
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <div>
+
+  </div>
+</div>
+</div>
+
+
+<!-- <div style="display: flex;flex-direction: column;width: 80%;">
+  <div>
+    <button (click)="findA()">all</button>
+    <button *ngFor="let country of this.countries" (click)="findC(country.name)">{{country.name}}</button>
+    <br>
+    <button (click)="addnew()">เพิ่มข้อมูล</button>
+
+  </div>
+  <div style="display: flex;flex-direction: row;">
+    <div style="width: 400x;">
+      <mat-selection-list #landmark [multiple]="false" (selectionChange)="show($event.options[0])">
+
+        <mat-list-option *ngFor="let landmark of this.landmarks" [value]="landmark" style="width: 400px;height: 160px;">
+          <div>
+            <img src="{{landmark.url}}" alt="" height="150px" width="200px">
+            {{landmark.name}}
+          </div>
+
+        </mat-list-option>
+      </mat-selection-list>
+
+    </div>
+    <div>
+        <div *ngIf="selectLandmark != undefined">
+          <div style="display: flex; flex-direction: column;">
+            <img src="{{this.selectLandmark.url}}"  width="500px" alt=""/>
+            <span>{{this.selectLandmark.name}}</span>
+            <span>{{this.selectLandmark.country}}</span>
+            <span>{{this.selectLandmark.detail}}</span>
+            <div><button>เเก้ไข</button></div>
+            <div><button>ลบ</button></div>
+
+
+          </div>
+
+        </div>
+    </div>
+  </div>
+  <div>
+
+  </div>
+</div> -->
+
+<app-foot></app-foot>
+

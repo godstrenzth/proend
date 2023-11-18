@@ -1,16 +1,17 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 import { Route, Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { DataService } from 'src/app/service/data.service';
 
-
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-logshop',
+  templateUrl: './logshop.component.html',
+  styleUrls: ['./logshop.component.scss']
 })
-export class LoginComponent {
+export class LogshopComponent {
+
   da=this.data.cid
   constructor(private data:DataService ,private http:HttpClient,private rou:Router)
   {
@@ -31,14 +32,14 @@ export class LoginComponent {
       username:id1,
       password:pass1
     }
-    let data:any= await lastValueFrom(this.http.post(this.data.apiPJ+"/login",LOG,
+    let data:any= await lastValueFrom(this.http.post(this.data.apiPJ+"/loginForadmin",LOG,
     {
 
     }))
 
     this.data.cid= data[1]
-    if(data[0]=="login Success"){
-      this.rou.navigateByUrl('/cus')
+    if(data=="login Success"){
+      this.rou.navigateByUrl('/shop')
     }
     else{
       // <c-alert color="warning">A simple warning alert—check it out!</c-alert>
@@ -64,5 +65,6 @@ export class LoginComponent {
   //   }
 
   }
+
 
 }
