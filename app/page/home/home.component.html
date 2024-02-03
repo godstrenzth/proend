@@ -1,0 +1,193 @@
+<mat-sidenav-container class="sidenav-container" style="background-color: rgb(199, 152, 243);">
+  <mat-sidenav #sidenav mode="side" opened [position]="'start'" class="app-sidenav" >
+    <mat-icon *ngIf="sidenav.opened" (click)="animateSidenav()"class="collapse-sidenav  " >keyboard_backspace</mat-icon>
+
+    <mat-nav-list style="margin-top: 100px;" >
+      <mat-icon *ngIf="!sidenav.opened" class="expand-sidenav" (click)="animateSidenav()" style="margin-left: -10px;" >menu</mat-icon>
+      <a  (click)="selectmenu(1,sidenav.opened)">
+        <!-- <a routerLink="/contact"></a> -->
+        <hr>
+        <mat-list-item>
+          <mat-icon matListItemIcon style="color: white;">home</mat-icon>
+          <div matListItemTitle style="color: white;">Home</div>
+        </mat-list-item>
+        </a>
+        <a (click)="selectmenu(2,sidenav.opened)">
+          <mat-list-item>
+            <mat-icon matListItemIcon style="color: white;">person</mat-icon>
+            <div matListItemTitle style="color: white;">Profile</div>
+          </mat-list-item>
+          </a>
+      <a (click)="selectmenu(3,sidenav.opened)">
+      <mat-list-item>
+        <mat-icon matListItemIcon style="color: white;">checklist</mat-icon>
+        <div matListItemTitle style="color: white;">MyList</div>
+      </mat-list-item>
+      </a>
+      <a (click)="selectmenu(4,sidenav.opened)">
+        <mat-list-item>
+          <mat-icon matListItemIcon style="color: white;">groups</mat-icon>
+          <div matListItemTitle style="color: white;">Propulation</div>
+        </mat-list-item>
+        </a>
+        <hr>
+      <div>
+
+        <a routerLink="/">
+          <mat-list-item>
+            <mat-icon matListItemIcon style="color: white;">logout</mat-icon>
+            <div matListItemTitle style="color: white;">Logout</div>
+          </mat-list-item>
+        </a>
+        <hr>
+      </div>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <!-- <mat-sidenav-content *ngIf="menu == 1" style="background-color: rgb(199, 152, 243);" #sidenavContent1> -->
+  <mat-sidenav-content *ngIf="menu == 1" style="background-color: rgb(199, 152, 243);" #sidenavContent1 [style.marginLeft.px]="sidenav.opened ? 200 : 55">
+
+    <div class="card" style="width: 300px; padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    align-items: center;
+    margin: 20px;">
+      <div style=" font-size: 1.5em;font-weight: bold;margin-bottom: 10px;"><h3>EA2023</h3></div>
+      <img  style="width: 290px;" src="https://media.istockphoto.com/id/1096952982/th/%E0%B9%80%E0%B8%A7%E0%B8%84%E0%B9%80%E0%B8%95%E0%B8%AD%E0%B8%A3%E0%B9%8C/%E0%B8%8A%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%AD%E0%B8%87%E0%B8%84%E0%B8%99%E0%B8%9D%E0%B8%B6%E0%B8%81%E0%B9%80%E0%B8%97%E0%B8%84%E0%B8%A7%E0%B8%B1%E0%B8%99%E0%B9%82%E0%B8%94%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%81%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B9%8D%E0%B8%B2%E0%B8%84%E0%B8%B1%E0%B8%8D%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%81%E0%B8%B2%E0%B8%AB%E0%B8%A5%E0%B8%B5%E0%B8%A8%E0%B8%B4%E0%B8%A5%E0%B8%9B%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%95%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%B9%E0%B9%89%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B9%80%E0%B8%AA%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B9%82%E0%B8%A5%E0%B8%81.jpg?s=2048x2048&w=is&k=20&c=Zuk79NzhzwMpfDZCLMk2QkdWZCxQdQFGrOkkTSighL0=" class="card-img-top">
+
+      <br>
+      <div class="card-body">
+        <div class="fxLayout" style="flex-direction: row;justify-content: space-around;margin-bottom: 10px;">
+          <mat-icon>cancel</mat-icon>
+          <span  class="fxLayout" style="flex-direction: row;align-items: center;"><mat-icon>group</mat-icon>&nbsp;&nbsp;30</span>
+        </div>
+        <p>Type : poomsae</p>
+        <p>รุ่น : 14-21ปี ?Gender:ชาย?</p>
+        <span  class="fxLayout" style="flex-direction: row;align-items: center;"><mat-icon>event_note</mat-icon>&nbsp;&nbsp;23/23/4242</span>
+        <button mat-flat-button color="primary" style="width: 50%;border-color: #fff;margin-top: 10px;width: 100%;" >More</button>
+      </div>
+    </div>
+  </mat-sidenav-content>
+
+
+  <mat-sidenav-content *ngIf="menu == 2"  style="background-color: rgb(199, 152, 243);"#sidenavContent2 [style.marginLeft.px]="sidenav.opened ? 200 : 55">
+    <div class="card" style="width: 95%; padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    align-items: center;
+    margin: 20px;">
+      <div style=" font-size: 1.5em;font-weight: bold;margin-bottom: 10px;letter-spacing: 0.1em;"><h3>Profile</h3></div>
+      <br>
+      <div style="align-self: self-start; margin-left: 33%;">
+        <div><h5>ID : asdasdar</h5></div>
+        <div style="flex-direction: row;justify-content: space-around; display: flex; position: relative;">
+          <h5>Fristname : saddas</h5> <h5 style="margin-left: 125px;">Lastname : sdasd</h5>
+        </div>
+        <h5>Date of birth : 21/213/2324</h5>
+        <h5>Gender : ชาย</h5>
+        <h5>Tel : 03423042384</h5>
+        <h5>Email : ex@gmail.com</h5>
+      </div>
+      <hr color=#ff3ff width=80%   size=5>
+
+        <div><h5>ประวัติการเเข่งขัน</h5></div>
+
+        <div>
+          <h5>sadasd</h5>
+          <h5>sadasd</h5>
+          <h5>sadasd</h5>
+          <h5>sadasd</h5>
+        </div>
+
+    </div>
+
+  </mat-sidenav-content>
+  <mat-sidenav-content *ngIf="menu == 3"  style="background-color: rgb(199, 152, 243);"#sidenavContent3 [style.marginLeft.px]="sidenav.opened ? 200 : 55">
+    <div class="card" style="width: 18.75rem; padding: 1.25rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    align-items: center;
+    margin: 20px;">
+      <div style=" font-size: 1.5em;font-weight: bold;margin-bottom: 10px;"><h3>EA2023</h3></div>
+      <img  style="width: 290px;" src="https://media.istockphoto.com/id/1096952982/th/%E0%B9%80%E0%B8%A7%E0%B8%84%E0%B9%80%E0%B8%95%E0%B8%AD%E0%B8%A3%E0%B9%8C/%E0%B8%8A%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%AD%E0%B8%87%E0%B8%84%E0%B8%99%E0%B8%9D%E0%B8%B6%E0%B8%81%E0%B9%80%E0%B8%97%E0%B8%84%E0%B8%A7%E0%B8%B1%E0%B8%99%E0%B9%82%E0%B8%94%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%81%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B9%8D%E0%B8%B2%E0%B8%84%E0%B8%B1%E0%B8%8D%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%81%E0%B8%B2%E0%B8%AB%E0%B8%A5%E0%B8%B5%E0%B8%A8%E0%B8%B4%E0%B8%A5%E0%B8%9B%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%95%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%B9%E0%B9%89%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B9%80%E0%B8%AA%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B9%82%E0%B8%A5%E0%B8%81.jpg?s=2048x2048&w=is&k=20&c=Zuk79NzhzwMpfDZCLMk2QkdWZCxQdQFGrOkkTSighL0=" class="card-img-top">
+
+      <br>
+      <div class="card-body">
+        <div class="fxLayout" style="flex-direction: row;justify-content: space-around;margin-bottom: 10px;">
+          <mat-icon>cancel</mat-icon>
+          <span  class="fxLayout" style="flex-direction: row;align-items: center;"><mat-icon>group</mat-icon>&nbsp;&nbsp;30</span>
+        </div>
+        <p>Type : poomsae</p>
+        <p>รุ่น : 14-21ปี ?Gender:ชาย?</p>
+        <span  class="fxLayout" style="flex-direction: row;align-items: center;"><mat-icon>event_note</mat-icon>&nbsp;&nbsp;23/23/4242</span>
+        <button mat-flat-button color="primary" style="width: 50%;border-color: #fff;margin-top: 10px;width: 100%;" >More</button>
+      </div>
+    </div>
+
+  </mat-sidenav-content>
+
+  <mat-sidenav-content *ngIf="menu == 4"  style="background-color: rgb(199, 152, 243);"#sidenavContent4 [style.marginLeft.px]="sidenav.opened ? 200 : 55">
+    <div class="card" style="width: 95%; padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    align-items: center;
+    margin: 1rem;">
+      <div>
+        <div class="fxLayout" style="flex-direction: row;align-items: center;">
+          <!-- (keydown.enter)="search() -->
+          <input matInput  #sea type="text"  (keyup)="applyFilter($event)" style="width: 18.75rem;height: 2.188rem;" placeholder="Search">
+          &nbsp;<mat-icon (click)="search()">search</mat-icon>
+
+        </div>
+
+        <br><br>
+
+
+        <div >
+        <table mat-table [dataSource]="dataSource"  >
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="weight">
+            <th mat-header-cell *matHeaderCellDef> Weight </th>
+            <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="symbol">
+            <th mat-header-cell *matHeaderCellDef> Symbol </th>
+            <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          </tr>
+        </table>
+
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        </div>
+
+      </div>
+   </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

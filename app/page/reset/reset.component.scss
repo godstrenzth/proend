@@ -1,0 +1,150 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+    background-image: url(https://cdna.artstation.com/p/assets/images/images/009/970/322/large/alena-aenami-lines1k.jpg?1521834310);
+    background-position: center ;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #272727;
+    align-items: center;
+}
+
+.box{
+  position: relative;
+  width: 460px;
+  height: 500px;
+  overflow: hidden;
+  background: #1c1c1c;
+  border-radius: 8px;
+}
+
+.box::before{
+  width: 460px;
+  height: 500px;
+  content:'';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  transform-origin: bottom right;
+  background: linear-gradient(0deg,transparent,transparent,#66a3e8,#66a3e8,#66a3e8);
+  z-index: 1;
+  animation: animate 6s linear infinite;
+
+}
+
+.box::after{
+  width: 460px;
+  height: 500px;
+  content:'' ;
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  transform-origin: bottom right;
+  background: linear-gradient(0deg,transparent,transparent,#66a3e8,#66a3e8,#66a3e8);
+  z-index: 1;
+  animation: animate 6s linear infinite;
+  animation-delay:  -3s;
+
+}
+
+.borderLi{
+  position: absolute;
+  top: 0;
+  inset: 0;
+}
+.borderLi::before{
+  width: 460px;
+  height: 500px;
+  content:"" ;
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  transform-origin: bottom right;
+  background: linear-gradient(0deg,transparent,transparent,#f29717,#f29717,#f29717);
+  z-index: 1;
+  animation: animate 6s linear infinite;
+  animation-delay:  -1.5s;
+}
+
+.borderLi::after{
+  width: 460px;
+  height: 500px;
+  content:"" ;
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  transform-origin: bottom right;
+  background: linear-gradient(0deg,transparent,transparent,#f29717,#f29717,#f29717);
+  z-index: 1;
+  animation: animate 6s linear infinite;
+  animation-delay:  -4.5s;
+}
+@keyframes animate{
+
+  0%
+  {
+    transform: rotate(0deg);
+  }
+
+  100%
+  {
+    transform: rotate(360deg);
+  }
+
+}
+
+.box form
+{
+  position: absolute;
+  inset: 4px;
+  background-color: #222;
+  padding: 50px 40px;
+  border-radius: 8px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.box form h2{
+  color: #fff;
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: 0.1em;
+  margin-bottom: 5px;
+}
+::ng-deep .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading {
+  border-top-left-radius: var(--mdc-shape-small, 12px) !important;
+  border-bottom-left-radius: var(--mdc-shape-small, 12px) !important;
+
+  border-color:#66a3e8 ;
+  }
+  ::ng-deep .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__notch {
+
+
+    border-color:#66a3e8 ;
+  }
+
+
+  ::ng-deep .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing {
+    border-top-right-radius: var(--mdc-shape-small, 12px) !important;
+    border-bottom-right-radius: var(--mdc-shape-small, 12px) !important;
+
+    border-color:#66a3e8 ;
+  }
+
+  ::ng-deep .mdc-text-field:not(.mdc-text-field-disabled) .mdc-floating-label{
+    color: #f29717;
+  }
+
+  ::ng-deep .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input{
+    color: #ffffff;
+  }
