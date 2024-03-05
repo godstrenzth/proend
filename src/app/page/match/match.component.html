@@ -1,0 +1,12 @@
+<div class="ngtt__match-wrapper  " >
+  <div class="ngtt__team-wrapper " *ngFor="let team of match?.teams let i=index" >
+    <div class="ngtt__team-avatar " ></div>
+    <div class="fxLayout  " style="flex-direction: row;justify-content: space-between; width:15.1rem;margin-left:0.30rem;">
+      <span class="adn__team-title " style="margin-top:0.30rem ;"> {{team?.name}}</span>
+      <span class="ngtt__team-score " style="margin-top:0.30rem ;" >{{team?.score}}</span>
+    </div>
+    <hr *ngIf="i==0">
+    <!-- <p  class="adn__team-title">{{team?.name}}</p> -->
+    <!-- <div class="ngtt__team-score fxLayout">{{team?.score}}</div> -->
+  </div>
+  </div>

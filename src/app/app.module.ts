@@ -26,6 +26,10 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { CompetitionComponent } from './page/competition/competition.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { AdnSingleEliminationTreeModule } from '@adonsio/adn-tournament';
+import { AdnTournamentTreeModule } from '@adonsio/adn-tournament';
+import { MatchComponent } from './page/match/match.component';
+
 
 
 
@@ -40,6 +44,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     ResetComponent,
     HomeComponent,
     CompetitionComponent,
+    MatchComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +63,9 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatIconModule,
     MatTableModule,
     MatPaginatorModule,
-    MatTabsModule
+    MatTabsModule,
+    AdnSingleEliminationTreeModule,
+    AdnTournamentTreeModule,
 
 
 

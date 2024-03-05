@@ -45,12 +45,12 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content style="background-color: rgb(199, 152, 243);">
-    <div class="card" style="width: 95%; padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    <div class="card" style="width: 95%; padding: 1.25rem;
+    border-radius: 0.625rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
     background-color: #fff;
     align-items: center;
-    margin: 20px;">
+    margin: 1.25rem;">
 
     <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" style="width: 85%;">
       <mat-tab label="Profile">
@@ -134,9 +134,19 @@
       </mat-tab>
       <mat-tab label="Image">
         <ng-template mat-tab-label>
-          <img style="width: 30px;" src="https://sv1.picz.in.th/images/2023/11/16/d0Sa3bv.png" alt="Image">
+          <img style="width: 30px;" src="https://img2.pic.in.th/pic/versus.png" alt="Image">
         </ng-template>
-        Content 3
+
+
+        <adn-single-elimination-tree
+        [tournament]="myTournamentData"
+        [matchTemplate]="myMatchTemplate">
+        </adn-single-elimination-tree>
+
+        <ng-template #myMatchTemplate let-match>
+          <app-match [match]="match"></app-match>
+        </ng-template>
+
       </mat-tab>
       <mat-tab label="Rank">
         <div class="fxLayout" style="align-items: center;flex-direction: column;">

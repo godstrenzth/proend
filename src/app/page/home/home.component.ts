@@ -1,5 +1,5 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
+import {  ChangeDetectorRef, Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
 
 import {MatTableDataSource} from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
@@ -33,9 +33,16 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class HomeComponent  {
   menu=1;
   input: any;
+  Nev:any;
+  @ViewChild('sidenavContent1') sidenavContent1: MatSidenavContent | undefined;
+  @ViewChild('sidenavContent2') sidenavContent2: MatSidenavContent | undefined;
+  @ViewChild('sidenavContent3') sidenavContent3: MatSidenavContent | undefined;
+  @ViewChild('sidenavContent4') sidenavContent4: MatSidenavContent | undefined;
+  // @ViewChild(MatSidenavContent, { static: true }) sidenavContent: MatSidenavContent | undefined;
   @ViewChild('sidenav') sidenav:MatSidenav | undefined
 
-  constructor(private readonly elemant:ElementRef,private render:Renderer2,private route: ActivatedRoute) {
+
+  constructor(private  elemant:ElementRef,private render:Renderer2,private route: ActivatedRoute,private cdr: ChangeDetectorRef) {
 
    }
    displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
@@ -55,10 +62,33 @@ export class HomeComponent  {
    {
 
    }
-   selectmenu(id:any)
+   async delay(ms: number) {
+    return await new Promise((resolve) => setTimeout(resolve, ms));
+  }
+    async selectmenu(id:any,nev:boolean)
    {
     this.menu=id;
+
     console.log(this.menu)
+
+
+
+    // if (!nev)
+    // {
+    //   // console.log("new "+nev)
+
+      //   const $matSidenavContent = this.elemant.nativeElement.querySelector(
+      //   'mat-sidenav-content'
+      // );
+
+
+    //   // this.render.setStyle($matSidenavContent, 'margin-left', '55px');
+    //   // this.cdr.detectChanges();
+    //   // console.log("ทำงาน");
+
+
+    // }
+
    }
    animateSidenav() {
     const isSideNavOpened = this.sidenav?.opened;
@@ -90,8 +120,9 @@ export class HomeComponent  {
       this.render.removeStyle($matSidenav, 'transition');
       this.render.removeStyle($matSidenav, 'visibility');
       this.render.removeStyle($matSidenav, 'transform');
-      this.render.removeStyle($matSidenavContent, 'margin-left');
+      this.render.removeStyle($matSidenavContent,'margin-left')
       this.sidenav?.toggle();
+
     }
   }
 

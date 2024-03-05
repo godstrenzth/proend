@@ -1,4 +1,6 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+
+import { AdnTournament } from '@adonsio/adn-tournament/lib/declarations/interfaces';
+import { Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 
 
@@ -31,6 +33,111 @@ export class CompetitionComponent {
   menu=1;
   input: any;
   @ViewChild('sidenav') sidenav:MatSidenav | undefined
+  myTournamentData: AdnTournament = {
+    rounds: [
+      {
+        type: 'Winnerbracket',
+        matches: [
+          {
+            teams: [
+                { name: 'sad', score: 1 },
+                { name: 'Team  B', score: 2 }]
+          },
+          {
+            teams: [
+                { name: 'Team  C', score: 1 },
+                { name: 'Team  D', score: 2 }]
+          },
+          {
+            teams: [
+                { name: 'Team  E', score: 1 },
+                { name: 'Team  F', score: 2 }]
+          },
+          {
+            teams: [
+                { name: 'Team  G', score: 1 },
+                { name: 'Team  H', score: 2 }]
+          }, {
+            teams: [
+                { name: 'Team  A', score: 1 },
+                { name: 'Team  B', score: 2 }]
+          },
+          {
+            teams: [
+                { name: 'Team  C', score: 1 },
+                { name: 'Team  D', score: 2 }]
+          },
+          {
+            teams: [
+                { name: 'Team  E', score: 1 },
+                { name: 'Team  F', score: 2 }]
+          },
+          {
+            teams: [
+                { name: 'Team  G', score: 1 },
+                { name: 'Team  H', score: 2 }]
+          }
+        ]
+      }, {
+        type: 'Winnerbracket',
+        matches: [
+          {
+            teams: [
+                { name: 'Team  A', score: 1 },
+                { name: 'Team  B', score: 2 }]
+          },
+          {
+            teams: [
+                { name: 'Team  C', score: 1 },
+                { name: 'Team  D', score: 2 }]
+          },
+          {
+            teams: [
+                { name: 'Team  E', score: 1 },
+                { name: 'Team  F', score: 2 }]
+          },
+          {
+            teams: [
+                { name: 'Team  G', score: 1 },
+                { name: 'Team  H', score: 2 }]
+          }
+        ]
+      },
+      {
+        type: 'Winnerbracket',
+        matches: [
+          {
+            teams: [
+                { name: 'Team  B', score: 1 },
+                { name: 'Team  D', score: 2 }]
+          },
+          {
+            teams: [
+                { name: 'Team  F', score: 1 },
+                { name: 'Team  H', score: 2 }]
+          }
+        ]
+      },
+      {
+        type: 'Final',
+        matches: [
+          {
+            teams: [
+              {
+                name: 'Team  D',
+                score: 1
+              },
+              {
+                name: 'Team  H',
+                score: 2
+              }
+            ]
+          },
+        ]
+      }
+    ]
+  };
+
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   displayedColumns2: string[] = ['position', 'name', 'weight', 'symbol', 'edit',];
   displayedColumns3: string[] = ['position', 'name', 'close'];
