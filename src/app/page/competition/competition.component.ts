@@ -2,7 +2,8 @@
 import { AdnTournament } from '@adonsio/adn-tournament/lib/declarations/interfaces';
 import { Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-
+import { Router } from '@angular/router';
+import { DataService } from 'src/app/service/data.service';
 
 
 export interface PeriodicElement {
@@ -142,7 +143,7 @@ export class CompetitionComponent {
   displayedColumns2: string[] = ['position', 'name', 'weight', 'symbol', 'edit',];
   displayedColumns3: string[] = ['position', 'name', 'close'];
   dataSource = ELEMENT_DATA;
-  constructor(private readonly elemant:ElementRef,private render:Renderer2) {
+  constructor(private readonly elemant:ElementRef,private render:Renderer2,private rou:Router,private dataS:DataService) {
 
    }
    editRow(a:any)
@@ -153,11 +154,7 @@ export class CompetitionComponent {
    {
 
    }
-   selectmenu(id:any)
-   {
-    this.menu=id;
-    console.log(this.menu)
-   }
+
    animateSidenav() {
     const isSideNavOpened = this.sidenav?.opened;
     const $matSidenav = this.elemant.nativeElement.querySelector(
@@ -191,6 +188,13 @@ export class CompetitionComponent {
       this.render.removeStyle($matSidenavContent, 'margin-left');
       this.sidenav?.toggle();
     }
+  }
+
+
+  selectmenu(id:any)
+  {
+   this.dataS.menu=id;
+   this.rou.navigateByUrl('/home')
   }
 
 

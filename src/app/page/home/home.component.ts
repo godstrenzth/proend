@@ -1,37 +1,27 @@
-import {  ChangeDetectorRef, Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import {  AfterViewInit, ChangeDetectorRef, Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
+import { Convert as competCVT,Compets } from 'src/app/model/compets.model';
+import { Convert as userCVT,User } from 'src/app/model/user.model';
 
 import {MatTableDataSource} from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DataService } from 'src/app/service/data.service';
+import { lastValueFrom } from 'rxjs';
+  /**
+   * @title Table with pagination
+   */
 
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 
 })
-export class HomeComponent  {
-  menu=1;
+export class HomeComponent  implements AfterViewInit {
+  menu=this.dataS.menu;
   input: any;
   Nev:any;
   @ViewChild('sidenavContent1') sidenavContent1: MatSidenavContent | undefined;
@@ -40,23 +30,69 @@ export class HomeComponent  {
   @ViewChild('sidenavContent4') sidenavContent4: MatSidenavContent | undefined;
   // @ViewChild(MatSidenavContent, { static: true }) sidenavContent: MatSidenavContent | undefined;
   @ViewChild('sidenav') sidenav:MatSidenav | undefined
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  competS=Array<Compets>()
+  competM=Array<Compets>()
+  user1=Array<User>()
+  userS=Array<User>()
+
+  dataSource:any
+
+  constructor(private  elemant:ElementRef,private render:Renderer2,private dataS:DataService
+    ,private route: ActivatedRoute,private cdr: ChangeDetectorRef,private rou:Router
+    ,private http:HttpClient) {
+      this.menu=this.dataS.menu;
+      console.log("menudatas",this.menu)
+      this.selectmenu(this.menu,true)
+      // if(this.menu==1)
+      //   {
+      //     console.log(1)
+      //     http.get(dataS.apiPJ+"/compets").subscribe((data:any)=>
+      //       {
+      //         this.competS=competCVT.toCompets(JSON.stringify(data))
+      //         console.log(this.competS)
+      //       })
+
+      //   }
 
 
-  constructor(private  elemant:ElementRef,private render:Renderer2,private route: ActivatedRoute,private cdr: ChangeDetectorRef) {
 
    }
-   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.menu = +params['menu'] || 1;
-    });
+   displayedColumns: string[] = ['name', 'phone'];
+
+
+
+
+
+   ngAfterViewInit() {
+    // console.log('start:', this.paginator,"me:::",this.menu);
+    // if ( this.menu == 4 ) {
+    //   console.log('paginator1111:', this.paginator,"me:::",this.menu);
+    this.cdr.detectChanges();
+    // }
+
   }
 
+   ngOnInit() {
+    // this.route.params.subscribe(params => {
+    //   this.menu = +params['menu'] || 1;
+    // });
+
+  }
+
+
    applyFilter(event: Event) {
+    //  const filterValue = (event.target as HTMLInputElement).value;
+    //  this.dataSource.filter = filterValue.trim().toLowerCase();
      const filterValue = (event.target as HTMLInputElement).value;
-     this.dataSource.filter = filterValue.trim().toLowerCase();
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+
    }
    search()
    {
@@ -64,12 +100,61 @@ export class HomeComponent  {
    }
    async delay(ms: number) {
     return await new Promise((resolve) => setTimeout(resolve, ms));
-  }
-    async selectmenu(id:any,nev:boolean)
+    }
+  async selectmenu(id:any,nev:boolean)
    {
-    this.menu=id;
+    this.dataS.menu=id;
+    this.menu=this.dataS.menu;
+    if(this.menu==1)
+      {
+        console.log(1)
+        this.http.get(this.dataS.apiPJ+"/compets").subscribe((data:any)=>
+          {
+            this.competS=competCVT.toCompets(JSON.stringify(data))
+            console.log(this.competS)
+          })
 
-    console.log(this.menu)
+      }
+      if(this.menu==2)
+        {
+          console.log(2)
+          this.http.get(this.dataS.apiPJ+"/users/id/2").subscribe((data:any)=>
+            {
+              this.user1=userCVT.toUser(JSON.stringify(data))
+              console.log(this.user1)
+            })
+
+        }
+        if(this.menu==3)
+          {
+            console.log(3)
+            this.http.get(this.dataS.apiPJ+"/compets/id/1").subscribe((data:any)=>
+              {
+                this.competM=competCVT.toCompets(JSON.stringify(data))
+                console.log(this.competM)
+              })
+
+          }
+          if(this.menu==4)
+            {
+              console.log(4)
+              let data:any= await lastValueFrom(this.http.get(this.dataS.apiPJ+"/users",
+              {
+
+              }))
+                this.userS=userCVT.toUser(JSON.stringify(data))
+                console.log(this.userS)
+
+                this.dataSource = new MatTableDataSource<User>(this.userS);
+                this.dataSource.paginator = this.paginator;
+
+                console.log(this.dataSource);
+                console.log('paginator1111:', this.paginator,"me:::",this.menu);
+
+            }
+
+
+
 
 
 

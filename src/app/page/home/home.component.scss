@@ -40,8 +40,8 @@ h1 {
   justify-content: center;
 }
 table {
-  margin-left: -35%;
-  width: 200%;
+
+  width: 100%;
 }
 
 .mat-mdc-form-field {
@@ -49,3 +49,7 @@ table {
   width: 100%;
 }
 
+.mat-mdc-table {
+
+  table-layout: fixed;
+}

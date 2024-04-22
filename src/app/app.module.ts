@@ -29,8 +29,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { AdnSingleEliminationTreeModule } from '@adonsio/adn-tournament';
 import { AdnTournamentTreeModule } from '@adonsio/adn-tournament';
 import { MatchComponent } from './page/match/match.component';
-
-
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -66,6 +66,8 @@ import { MatchComponent } from './page/match/match.component';
     MatTabsModule,
     AdnSingleEliminationTreeModule,
     AdnTournamentTreeModule,
+    MatButtonToggleModule,
+    HttpClientModule
 
 
 

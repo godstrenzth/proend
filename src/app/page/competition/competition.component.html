@@ -4,7 +4,7 @@
 
     <mat-nav-list style="margin-top: 100px;" >
       <mat-icon *ngIf="!sidenav.opened" class="expand-sidenav" (click)="animateSidenav()" style="margin-left: -10px;" >menu</mat-icon>
-      <a  routerLink="/home">
+      <a (click)="selectmenu(1)">
         <!-- <a routerLink="/contact"></a> -->
         <hr>
         <mat-list-item>
@@ -12,19 +12,19 @@
           <div matListItemTitle style="color: white;">Home</div>
         </mat-list-item>
         </a>
-        <a [routerLink]="['/home', { menu: 2 }]">
+        <a (click)="selectmenu(2)">
           <mat-list-item>
             <mat-icon matListItemIcon style="color: white;">person</mat-icon>
             <div matListItemTitle style="color: white;">Profile</div>
           </mat-list-item>
           </a>
-          <a [routerLink]="['/home', { menu: 3 }]">
+          <a (click)="selectmenu(3)">
       <mat-list-item>
         <mat-icon matListItemIcon style="color: white;">checklist</mat-icon>
         <div matListItemTitle style="color: white;">MyList</div>
       </mat-list-item>
       </a>
-      <a [routerLink]="['/home', { menu: 4 }]">
+      <a (click)="selectmenu(4)">
         <mat-list-item>
           <mat-icon matListItemIcon style="color: white;">groups</mat-icon>
           <div matListItemTitle style="color: white;">Propulation</div>
@@ -45,19 +45,20 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content style="background-color: rgb(199, 152, 243);">
-    <div class="card" style="width: 95%; padding: 1.25rem;
+    <div class="card" style="width: 92%; padding: 1.25rem;
     border-radius: 0.625rem;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
     background-color: #fff;
     align-items: center;
     margin: 1.25rem;">
 
-    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" style="width: 85%;">
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" >
       <mat-tab label="Profile">
         <div class="fxLayout" style="align-items: center;flex-direction: column;">
-          <div style=" font-size: 1.5em;font-weight: bold;margin-bottom: 10px;letter-spacing: 0.1em;margin-top: 20px;"><h3>Profile</h3></div>
+          <div style=" font-size: 1.5em;font-weight: bold;letter-spacing: 0.1em;margin-top: 20px;"><h3>Profile</h3></div>
           <br>
-          <div style="align-self: self-start; margin-left: 33%;width: 38%;">
+          <!-- <div style="align-self: self-start; margin-left: 33%;width: 38%;"> -->
+          <div style="align-self: self-start;display: flex;flex-wrap: wrap; ">
             <div class="input-group" style="margin-top: 10px;">
               <span class="input-group-text" style="background-color: rgb(219, 219, 226);">Name</span>
               <input type="text" aria-label="First name" class="form-control">
