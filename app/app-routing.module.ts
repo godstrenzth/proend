@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: 'forget',component:ForgetComponent},
   {path: 'reset',component:ResetComponent},
   {path: 'home',component:HomeComponent},
-  {path: 'compete',component:CompetitionComponent},
+  {path: 'compete/:cid',component:CompetitionComponent},
 ];
 
 @NgModule({

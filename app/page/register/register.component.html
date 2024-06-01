@@ -6,43 +6,41 @@
     <title>RegisterTDK</title>
 </head>
 <body>
-<div class="box">
+<div class="box" >
   <span class="borderLi"></span>
     <form>
-      <h2 style="margin-top: -25px;">Register</h2>
-      <div style="margin-top: 10px; flex-direction: row;width: 450px;">
-        <div style="justify-content: end">
-          <mat-form-field appearance="outline"color="accent"  style="width: 47%;">
-            <mat-label>Fristname</mat-label>
-            <input #fn matInput type="text">
-          </mat-form-field>
-          <mat-form-field appearance="outline" color="accent" style="margin-left: 20px;width: 48%;">
-            <mat-label>Lastname</mat-label>
-            <input #ln matInput type="text">
-          </mat-form-field>
-        </div>
+      <h2 style="margin-top: -45px;">Register</h2>
+      <div style="margin-top: 5px; width: 100%;height: 100%;">
 
-        <div class="fxLayout" style="flex-direction: column;justify-content: center;width: 450px;">
-          <mat-form-field appearance="outline"color="accent"  >
+
+        <div class="fxLayout inputBox" style="flex-direction: column;justify-content: center;">
+
+          <mat-form-field appearance="outline"color="primary"  >
+            <mat-label>Name</mat-label>
+            <input #Name matInput type="text">
+          </mat-form-field>
+
+
+          <mat-form-field appearance="outline"color="primary"  >
             <mat-label>Email</mat-label>
-            <input #ID1 matInput type="text">
+            <input #email matInput type="text">
           </mat-form-field>
 
-          <mat-form-field appearance="outline" color="accent">
+          <mat-form-field appearance="outline" color="primary" >
             <mat-label>Password</mat-label>
             <input #pass matInput type="password">
           </mat-form-field>
 
-          <mat-form-field appearance="outline" color="accent">
+          <mat-form-field appearance="outline" color="primary" class="inputBox">
             <mat-label>Phone</mat-label>
-            <input #pass matInput type="text">
+            <input #phone matInput   type="tel" pattern="[0-9]*" (keypress)="onlyNumbers($event)" >
           </mat-form-field>
 
 
-            <mat-form-field appearance="outline" color="accent">
+            <mat-form-field appearance="outline" color="primary" class="inputBox">
               <mat-label>Choose a date</mat-label>
-              <input matInput [matDatepicker]="datepicker">
-              <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+              <input matInput [matDatepicker]="datepicker" [min]="minDate" [max]="maxDate"  #date readonly>
+              <mat-datepicker-toggle matIconSuffix [for]="datepicker" style="color: black;"></mat-datepicker-toggle>
               <mat-datepicker #datepicker color="accent">
                 <mat-datepicker-actions>
                   <button mat-button matDatepickerCancel>Cancel</button>
@@ -51,34 +49,49 @@
               </mat-datepicker>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" color="accent">
+            <mat-form-field appearance="outline" color="primary" class="inputBox">
               <mat-label>Gender</mat-label>
-              <mat-select>
+              <mat-select #gender>
                 <mat-option value="man" color="#fff">ชาย</mat-option>
-                <mat-option value="gril"color="#fff">หญิง</mat-option>
+                <mat-option value="girl"color="#fff">หญิง</mat-option>
 
               </mat-select>
             </mat-form-field>
-            <!-- <div class="input-group mb-3" style="height: 40px;">
-              <label class="input-group-text" for="inputGroupFile01">&nbsp;ID card&nbsp;</label>
-              <input type="file" class="form-control custom-file-label" id="inputGroupFile01" accept=".pdf">
-            </div> -->
-              <div >
-                <mat-label style="color: #fff;">ID card</mat-label>
-                <input style="margin-left: 10px;color: #fff;" #idcard  type="file" accept=".pdf" capture>
-              </div>
+
+            <input class="customFile" #idcard style="color: #FFCDEA;margin-top: -15px;margin-bottom: 5px;" type="file" accept="image/*" capture >
+              <!-- <div class="inputBox" style="display: flex;flex-direction: row;text-align: center;">
+                <mat-label style="color: #FFCDEA;">IDcard</mat-label>
+                <input style="margin-left: 10px;color: #FFCDEA;  " #idcard  type="file" accept=".pdf" capture>
+
+
+              </div> -->
+
 
 
         </div>
       </div>
 
-        <mat-card-actions class="fxLayout" style="flex-direction: row; justify-content: center; margin-top: 20px">
+        <mat-card-actions class="fxLayout" style="flex-direction: row; justify-content: space-around; margin-top: 5px">
           <!--(click)="go(ID1.value,pass.value)" -->
-          <button mat-flat-button color="primary" style="width: 50%;">Sign</button>
+          <button mat-flat-button color="primary" style="width: 45%;" (click)="register(Name.value,email.value,pass.value,phone.value,date.value,gender.value,idcard)">Sign</button>
+          <button mat-flat-button color="warn" style="width: 45%;" routerLink="/">Back</button>
         </mat-card-actions>
 
 
     </form>
 </div>
+  <div class="alert alert-warning fixed-top" *ngIf="nodata == true" (click)="Chnodata()"  style="top: 10%; left: 50%; transform: translate(-50%, -50%);">
+    <div class="icon__wrapper">
+      <mat-icon class="mdi mdi-alert-outline" style="color: white;font-family: 'Material Icons';">warning</mat-icon>
+    </div>
+    <p>Please enter the information again.</p>
+    <p style="color: black;">click to close</p>
+
+  </div>
+
+
+  <img class="fixed-top" src="https://img2.pic.in.th/pic/Infinity1x-1.0s-200px-200px-1.gif" alt="" *ngIf="noregis == true"
+  style="width: 15%; left: 50%; transform: translate(-50%, 100%); border-radius: 20%;display: flex; align-items: center;"  >
+
 </body>
 </html>

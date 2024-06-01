@@ -27,8 +27,15 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { CompetitionComponent } from './page/competition/competition.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { AdnSingleEliminationTreeModule } from '@adonsio/adn-tournament';
-
-
+import { AdnTournamentTreeModule } from '@adonsio/adn-tournament';
+import { MatchComponent } from './page/match/match.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { HttpClientModule } from '@angular/common/http';
+import {MatDialogModule} from '@angular/material/dialog';
+import { StatedialogComponent } from './page/statedialog/statedialog.component';
+import { DetaildialogComponent } from './page/detaildialog/detaildialog.component';
+import { CreatedialogComponent } from './page/createdialog/createdialog.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -42,6 +49,10 @@ import { AdnSingleEliminationTreeModule } from '@adonsio/adn-tournament';
     ResetComponent,
     HomeComponent,
     CompetitionComponent,
+    MatchComponent,
+    StatedialogComponent,
+    DetaildialogComponent,
+    CreatedialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,8 +72,12 @@ import { AdnSingleEliminationTreeModule } from '@adonsio/adn-tournament';
     MatTableModule,
     MatPaginatorModule,
     MatTabsModule,
-    AdnSingleEliminationTreeModule
-
+    AdnSingleEliminationTreeModule,
+    AdnTournamentTreeModule,
+    MatButtonToggleModule,
+    HttpClientModule,
+    MatDialogModule,
+    FormsModule,
 
 
 
