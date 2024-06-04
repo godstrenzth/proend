@@ -1,0 +1,62 @@
+<div class="fxLayout" style="align-items: center;flex-direction: column;padding: 20px;border: 15px double #FFCDEA;">
+  <div style=" font-size: 1.5em;font-weight: bold;letter-spacing: 0.1em;margin-top: 20px;"><h3>Create</h3></div>
+  <br>
+  <!-- <div style="align-self: self-start; margin-left: 33%;width: 38%;"> -->
+  <div style="align-self: self-start;display: flex;flex-wrap: wrap; ">
+    <div class="input-group" style="margin-top: 10px;">
+      <span class="input-group-text" style="background-color: rgb(219, 219, 226);" >Name</span>
+      <input type="text" aria-label="First name" class="form-control" #name >
+    </div>
+    <div class="input-group" style="margin-top: 10px;">
+      <span class="input-group-text" style="background-color: rgb(219, 219, 226);">Place</span>
+      <input type="text" aria-label="First name" class="form-control" #place >
+    </div>
+    <!-- <div class="input-group" style="margin-top: 10px;">
+      <span class="input-group-text" style="background-color: rgb(219, 219, 226);">Image</span>
+      <input type="text" aria-label="First name" class="form-control" #img>
+    </div> -->
+    <div class="input-group" style="margin-top: 10px;">
+      <span class="input-group-text" style="background-color: rgb(219, 219, 226);">Detail</span>
+      <input type="text" aria-label="First name" class="form-control" #detail>
+    </div>
+    <div class="input-group" style="margin-top: 10px;">
+      <span class="input-group-text" style="background-color: rgb(219, 219, 226);">Contact</span>
+      <input type="tel" aria-label="First name" class="form-control"  #contact>
+    </div>
+    <!-- <div class="input-group" style="margin-top: 10px;">
+      <span class="input-group-text" style="background-color: rgb(219, 219, 226);">Time</span>
+      <input type="time" aria-label="First name" class="form-control">
+    </div> -->
+    <div class="input-group" style="margin-top: 10px;">
+      <span class="input-group-text" style="background-color: rgb(219, 219, 226);">Closed Date</span>
+      <input type="date" aria-label="First name" class="form-control" #date>
+    </div>
+
+    <div style="margin-top: 25px;">
+          <input name="upload"class="customFile" #img style="color: #86469C;margin-top: -15px;margin-bottom: 5px;" type="file" accept="image/*" capture  title="poster">
+
+    </div>
+
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button mat-flat-button color="primary" class="fxLayout"  (click)="create(name.value,place.value,img,detail.value,contact.value,date.value)"
+    style="width: 30%;margin-top: 20px;align-items: center;margin-bottom: 10px;justify-content: center;">Create</button>
+
+    <hr color="#86469C" width="100%" size="5">
+
+
+  </div>
+  <div class="alert alert-warning fixed-top" *ngIf="nodata == true" (click)="Chnodata()"  style="top: 10%; left: 50%; transform: translate(-50%, -50%);">
+    <div class="icon__wrapper">
+      <mat-icon class="mdi mdi-alert-outline" style="color: white;font-family: 'Material Icons';">warning</mat-icon>
+    </div>
+    <p>Please enter the information again.</p>
+    <p style="color: black;">click to close</p>
+
+  </div>
+
+  <img class="fixed-top" src="https://img2.pic.in.th/pic/Infinity1x-1.0s-200px-200px-1.gif" alt="" *ngIf="noregis == true"
+  style="width: 15%; left: 50%; transform: translate(-50%, 100%); border-radius: 20%;display: flex; align-items: center;"  >
+
+</div>

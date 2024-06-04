@@ -31,6 +31,11 @@ import { AdnTournamentTreeModule } from '@adonsio/adn-tournament';
 import { MatchComponent } from './page/match/match.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { HttpClientModule } from '@angular/common/http';
+import {MatDialogModule} from '@angular/material/dialog';
+import { StatedialogComponent } from './page/statedialog/statedialog.component';
+import { DetaildialogComponent } from './page/detaildialog/detaildialog.component';
+import { CreatedialogComponent } from './page/createdialog/createdialog.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -45,6 +50,9 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     CompetitionComponent,
     MatchComponent,
+    StatedialogComponent,
+    DetaildialogComponent,
+    CreatedialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +75,9 @@ import { HttpClientModule } from '@angular/common/http';
     AdnSingleEliminationTreeModule,
     AdnTournamentTreeModule,
     MatButtonToggleModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+    FormsModule,
 
 
 

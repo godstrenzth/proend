@@ -5,15 +5,13 @@
 //   const compets = Convert.toCompets(json);
 
 export interface Compets {
-  cid:         string;
-  hostID:      string;
+  cid:         number;
+  hostID:      number;
   competName:  string;
-  regis_start: string;
   regis_end:   string;
-  amount:      string;
   compet_date: string;
-  email:       string;
-  phone:       string;
+  detail:      string;
+  contact:     string;
   place:       string;
   poster:      string;
 }
