@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>Select Status</h2>
 <mat-dialog-content>
  <br>
-  <mat-form-field  appearance="outline">
+  <!-- <mat-form-field  appearance="outline">
     <mat-label>{{nowst}}</mat-label>
     <mat-select #sec >
       <mat-option value="1">Host</mat-option>
@@ -9,7 +9,19 @@
       <mat-option value="3">Athlete</mat-option>
     </mat-select>
 
-  </mat-form-field>
+  </mat-form-field> -->
+  <div class="input-group ad" style="margin-top: 10px;width: 100%;flex-wrap: nowrap;display: flex;min-width: 240px;">
+
+    <span class="input-group-text " style="background-color: rgb(219, 219, 226);">{{nowst}} to </span>
+
+    <mat-select style="padding: 10px;" #sec >
+      <div>
+        <mat-option value="1">Host</mat-option>
+        <mat-option value="2">Referee</mat-option>
+        <mat-option value="3">Athlete</mat-option>
+      </div>
+    </mat-select>
+  </div>
 
   <!-- <div class="alert alert-primary fixed-top" style="top: 10%; left: 50%; transform: translate(-50%, -50%);">
     <div class="icon__wrapper">

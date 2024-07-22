@@ -21,14 +21,51 @@ export class CreatedialogComponent {
   {
     this.datePipe = new DatePipe('en-US');
     this.today = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+
   }
 
   async create(name:any,place:any,img:any,detail:any,cont:any,date:any)
   {
+
     console.log(name+"||"+place+"||"+img.value+"||"+detail+"||"+cont+"||"+date+"+=="+this.today)    // if(name == "" || email == "" || password  == "" ||phone  == "" || date  == "" || gender  == undefined || idcard =="" )
-    if(name == "" || place == "" || img.value == ""   ||detail  == "" || date  == "" || cont  == "" )
+    //if(name == "" || place == "" || img.value == ""   ||detail  == "" || date  == "" || cont  == "" )
+    console.log(this.formatDate(date))
+    if(detail  == "")
+      {
+
+        detail = "coming soon!!"
+
+      }
+    if(cont == "")
+      {
+
+        cont = "coming soon!!"
+
+      }
+
+
+    if(name == "" || place == "" || date  == "" )
       {
         this.nodata=true;
+      }
+    else if( img.value == "" )
+      {
+        this.noregis=true
+        let jin={
+          uid:localStorage.getItem('uid'),
+          competName:name,
+          regis_end:this.formatDate(date),
+          compet_date:this.today,
+          detail:detail,
+          contact:cont,
+          place:place,
+
+        }
+        console.log(jin)
+        let data:any= await lastValueFrom(this.http.post(this.dataS.apiPJ+"/compets-noimg",jin,{}))
+        this.noregis=false
+        window.location.reload();
+        this.dia.close()
       }
     else{
       this.noregis=true
@@ -44,9 +81,9 @@ export class CreatedialogComponent {
       });
       finalvalue = await readAsDataURL;
       let jin={
-        hostID:localStorage.getItem('uid'),
+        uid:localStorage.getItem('uid'),
         competName:name,
-        regis_end:date,
+        regis_end:this.formatDate(date),
         compet_date:this.today,
         detail:detail,
         contact:cont,
@@ -54,15 +91,18 @@ export class CreatedialogComponent {
         poster:finalvalue
 
       }
+      console.log(jin)
       let data:any= await lastValueFrom(this.http.post(this.dataS.apiPJ+"/compets",jin,{}))
       this.noregis=false
+      window.location.reload();
       this.dia.close()
 
     }
   }
+
   formatDate(dateString: string) {
     const dateComponents = dateString.split('/');
-    const rearrangedComponents = [dateComponents[2], dateComponents[1], dateComponents[0]];
+    const rearrangedComponents = [dateComponents[2], dateComponents[0], dateComponents[1]];
     return rearrangedComponents.join('/');
   }
   Chnodata()

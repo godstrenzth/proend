@@ -67,7 +67,7 @@ table {
 
 $ngtt-background-primary: #2B3E50;
 $ngtt-accent-primary: goldenrod;
-$ngtt-background-secondary: transparent;
+$ngtt-background-secondary: rgb(0 110 255 / 43%);
 
 
 //
@@ -100,6 +100,7 @@ $ngtt-bracket-line-width: 2px !default;
   height: $ngtt-match-wrapper-height;
   width: $ngtt-match-wrapper-width;
   background-color: $ngtt-match-container-background;
+  border-radius: 5px;
   box-sizing: border-box !important;
 }
 
@@ -278,6 +279,112 @@ $ngtt-bracket-line-width: 2px !default;
 .alert .close:hover, .alert .open:hover {
   transform: scale(1.3);
 }
+.rankM{
+  background: #fff0fe;
+  min-width: 350px;
+  max-width: 450px;
+  max-height: 450px;
+  margin-bottom: 10px;
+  padding: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.rankM .listP{
+  // background: #939393;
+  margin-left: 20px;
+  text-align: center;
+  //
+  // border-radius: 10% 25%;
+  // padding: 5px
+}
+
+.rankM .imgrank{
+  position: relative;
+  width:  80px;
+  height: 80px;
+  border-radius: 25% 10%;
+  overflow: hidden;
+}
+.rankM .imgrank img{
+  position: absolute;
+  top :0;
+  left: 0;
+  width:  100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rankS{
+  background: #fff0fe;
+  min-width: 350px;
+  max-width: 450px;
+  max-height: 450px;
+  margin-bottom: 10px;
+  padding: 10px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.rankS .listP{
+  // background: #939393;
+  margin-left: 20px;
+  text-align: center;
+  //
+  // border-radius: 10% 25%;
+  // padding: 5px
+}
+.rankS .ih2 h2{
+  background-color: gainsboro;
+  padding: 20px;
+  border-radius: 25% 10%;
+}
+
+.rankS .imgrank{
+  position: relative;
+  width:  80px;
+  height: 80px;
+  border-radius: 25% 10%;
+  overflow: hidden;
+}
+.rankS .imgrank img{
+  position: absolute;
+  top :0;
+  left: 0;
+  width:  100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+// @media (max-width: 768px) { /* For smaller screens (e.g., tablets) */
+//   .input-group-text {
+//     font-size: 1rem; /* Smaller font size for tablets */
+//   }
+// }
+
+// @media (max-width: 480px) { /* For even smaller screens (e.g., phones) */
+//   .input-group-text {
+//     font-size: 0.8rem; /* Even smaller font size for phones */
+//   }
+// }
+@media (max-width: 768px) { /* For smaller screens (e.g., tablets) */
+    .ad {
+      flex-wrap: wrap;
+      flex-direction: column;
+    }
+    .ed {
+      grid-template-columns: repeat(1, 1fr);
+    }
+    .start{
+      align-self: self-start;
+    }
+    // .input-group-text {
+    //       font-size: 1rem; /* Smaller font size for tablets */
+    //     }
+  }
 
 
 

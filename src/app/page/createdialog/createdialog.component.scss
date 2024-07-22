@@ -110,4 +110,21 @@
 }
 
 
+@media (max-width: 768px) { /* For smaller screens (e.g., tablets) */
+  .ad {
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  // .input-group-text {
+  //       font-size: 1rem; /* Smaller font size for tablets */
+  //     }
+}
+
+
+
+.mat-mdc-icon-button.mat-mdc-button-base .mat-mdc-icon-button .mdc-icon-button
+{
+  height: 20px;
+}
 

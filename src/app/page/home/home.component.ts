@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import {  AfterViewInit, ChangeDetectorRef, Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
 import { Convert as competCVT,Compets } from 'src/app/model/compets.model';
 import { Convert as userCVT,User } from 'src/app/model/user.model';
@@ -14,6 +14,7 @@ import { StatedialogComponent } from '../statedialog/statedialog.component';
 import { DetaildialogComponent } from '../detaildialog/detaildialog.component';
 import { DatePipe } from '@angular/common';
 import { CreatedialogComponent } from '../createdialog/createdialog.component';
+import { DetildialogoneComponent } from '../detildialogone/detildialogone.component';
   /**
    * @title Table with pagination
    */
@@ -36,13 +37,19 @@ export class HomeComponent  implements AfterViewInit {
   // @ViewChild(MatSidenavContent, { static: true }) sidenavContent: MatSidenavContent | undefined;
   @ViewChild('sidenav') sidenav:MatSidenav | undefined
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
+  @ViewChild(MatPaginator) paginate!: MatPaginator;
 
   competS=Array<Compets>()
   competM=Array<Compets>()
   combystatus:any
   user1=Array<User>()
   userS=Array<User>()
+  tempcom1:any
+  filteredCompetS:any
+  img64:any
+  P_telphone:any
+  userWithEmail:any
+
 
   uidlocal:any
   statuslocal:any
@@ -50,21 +57,38 @@ export class HomeComponent  implements AfterViewInit {
   daynow : any
   datePipe :any
 
-
+  endindex:any=undefined
+  pageSize = 6; // Items per page
+  pageIndex = 0; // Current page index
   colorMain="#86469C"
   colorBC="#BC7FCD"
   colorsub1="#FB9AD1"
   colorsub2="#FFCDEA"
 
+  error:any
+  success:any
+  noregis:any
+  nodata:any
+  prifull:any
+  noemail:any
+
   constructor(private  elemant:ElementRef,private render:Renderer2,private dataS:DataService
     ,private route: ActivatedRoute,private cdr: ChangeDetectorRef,private rou:Router
     ,private http:HttpClient,private dia:MatDialog) {
+
+      this.route.params.subscribe(params => {
+        if(params['sel'] != undefined)
+          {
+            this.dataS.menu=params['sel'];
+          }
+      });
       this.menu=this.dataS.menu;
       console.log("menudatas",this.menu)
       this.selectmenu(this.menu,true)
 
       this.statuslocal= localStorage.getItem('status')
       this.uidlocal= localStorage.getItem('uid')
+
 
       // if(this.menu==1)
       //   {
@@ -84,9 +108,177 @@ export class HomeComponent  implements AfterViewInit {
 
    }
 
-   displayedColumns: string[] = ['Name', 'Phone','Detail'];
+   displayedColumns: string[] = ['ID','Name', 'Phone','Detail'];
+
+   saveprofile(name:any,email:any,tel:any,img:any)
+   {
+     this.http.get(this.dataS.apiPJ+"/users").subscribe((data:any)=>
+      {
+        this.userS=userCVT.toUser(JSON.stringify(data))
+        this.userWithEmail = this.userS.find(user => user.email == email);
+        console.log(this.userWithEmail)
+
+        console.log(name,email,tel)
+        if(name=="" || email =="" || tel =="")
+        {
+          this.nodata=true
+        }
+        else if(name == this.user1[0].fullName && email == this.user1[0].email && tel == this.user1[0].phoneNumber &&img=="")
+        {
+          this.prifull=true
+        }
+        else if(email !=this.user1[0].email)
+        {
+          if(this.userWithEmail)
+          {
+            this.noemail=true
+          }
+          else{
+
+            if(this.img64 == undefined)
+            {
+              console.log("Enull")
+              let userup={
+                fullName: name,
+                email: email,
+                phoneNumber: tel,
+              }
+              console.log(userup)
+
+              this.http.post(this.dataS.apiPJ+"/update-user-noimg/"+this.uidlocal, userup)
+              .subscribe({
+                next: (response) => {
+                  //console.log(response)
+                  this.http.get(this.dataS.apiPJ+"/users/id/"+this.uidlocal).subscribe((data:any)=>
+                    {
+                      this.user1=userCVT.toUser(JSON.stringify(data))
+                    })
+                  this.success = true; // set success to true
+                  setTimeout(() => {
+                    this.success = false; // set success back to false after 10 seconds
+                  }, 5000); // 1000 milliseconds = 1 seconds
+                },
+                error: (error) => {
+
+                  error=true;
+                  console.error("Error saving data:", error.status);
+                },
+              });
+            }
+            else{
+              console.log("Enot null")
+              let userup={
+                fullName: name,
+                email: email,
+                phoneNumber: tel,
+                id_card:this.img64
+              }
+              console.log(userup)
+
+              this.http.post(this.dataS.apiPJ+"/update-user/"+this.uidlocal, userup)
+              .subscribe({
+                next: (response) => {
+                  //console.log(response)
+                  this.http.get(this.dataS.apiPJ+"/users/id/"+this.uidlocal).subscribe((data:any)=>
+                    {
+                      this.user1=userCVT.toUser(JSON.stringify(data))
+                    })
+                  this.success = true; // set success to true
+                  setTimeout(() => {
+                    this.success = false; // set success back to false after 10 seconds
+                  }, 5000); // 1000 milliseconds = 1 seconds
+                },
+                error: (error) => {
+                  error=true;
+                  console.error("Error saving data:", error.status);
+                },
+              });
+            }
+          }
+        }
+        else{
+          if(this.img64 == undefined)
+            {
+              console.log("null")
+              let userup={
+                fullName: name,
+                email: email,
+                phoneNumber: tel,
+              }
+              console.log(userup)
+
+              this.http.post(this.dataS.apiPJ+"/update-user-noimg/"+this.uidlocal, userup)
+              .subscribe({
+                next: (response) => {
+                  //console.log(response)
+                  this.http.get(this.dataS.apiPJ+"/users/id/"+this.uidlocal).subscribe((data:any)=>
+                    {
+                      this.user1=userCVT.toUser(JSON.stringify(data))
+                    })
+                  this.success = true; // set success to true
+                  setTimeout(() => {
+                    this.success = false; // set success back to false after 10 seconds
+                  }, 5000); // 1000 milliseconds = 1 seconds
+                },
+                error: (error) => {
+
+                  error=true;
+                  console.error("Error saving data:", error.status);
+                },
+              });
+            }
+            else{
+              console.log("not null")
+              let userup={
+                fullName: name,
+                email: email,
+                phoneNumber: tel,
+                id_card:this.img64
+              }
+              console.log(userup)
+
+              this.http.post(this.dataS.apiPJ+"/update-user/"+this.uidlocal, userup)
+              .subscribe({
+                next: (response) => {
+                  //console.log(response)
+                  this.http.get(this.dataS.apiPJ+"/users/id/"+this.uidlocal).subscribe((data:any)=>
+                    {
+                      this.user1=userCVT.toUser(JSON.stringify(data))
+                    })
+                  this.success = true; // set success to true
+                  setTimeout(() => {
+                    this.success = false; // set success back to false after 10 seconds
+                  }, 5000); // 1000 milliseconds = 1 seconds
+                },
+                error: (error) => {
+
+                  error=true;
+                  console.error("Error saving data:", error.status);
+                },
+              });
+
+            }
+
+        }
 
 
+  })
+  }
+
+  updatePosterValue(imgInput: HTMLInputElement) {
+    const file = imgInput.files?.[0];
+    // console.log(file?.name)
+    this.user1[0].id_card=file?.name || "";
+    if (file) {
+        // ใช้ FileReader ในการอ่านข้อมูลจากไฟล์ภาพ
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            // เมื่ออ่านเสร็จสิ้น ให้ตั้งค่าค่าใน input text เป็นค่า base64 ของไฟล์ภาพ
+            this.img64 = reader.result as string;
+        };
+    }
+  }
 
 
 
@@ -139,11 +331,77 @@ export class HomeComponent  implements AfterViewInit {
       data: {uid: id},
     });
   }
+  opnediauserDetailview(id : any)
+  {
+
+    this.dia.open(DetildialogoneComponent, {
+      data: {uid: id},
+    });
+  }
   opneCDetail()
   {
 
     this.dia.open(CreatedialogComponent,{width:"600px"});
   }
+  handlePageChange(event: PageEvent) {
+
+    // this.pageIndex = event.pageIndex;
+    const startindex=event.pageIndex * event.pageSize;
+    let endindex =startindex + event.pageSize;
+    this.endindex=endindex;
+    if(endindex > this.competS.length )
+      {
+        endindex=this.competS.length
+      }
+      this.filteredCompetS=this.competS.slice(startindex,endindex)
+      console.log(startindex,endindex)
+  }
+  applyFiltercom(comaa:any) {
+    console.log(comaa)
+
+    if(comaa == "")
+      {
+        this.competS=this.tempcom1
+
+        if(this.endindex!=undefined)
+          {
+            this.filteredCompetS = this.tempcom1.slice(0,this.endindex);
+          }
+        else{
+          this.filteredCompetS = this.tempcom1.slice(0,6);
+
+        }
+      }
+    else{
+      this.filteredCompetS = this.competS.filter(compet => {
+        const searchTerm = comaa.toLowerCase(); // Convert search term to lowercase for case-insensitive search
+        return (
+          compet.competName.toLowerCase().includes(searchTerm) || // Search by competition name
+          compet.place.toLowerCase().includes(searchTerm)||
+          compet.regis_end.toLowerCase().includes(searchTerm)
+          // ||
+          // compet.contact.toLowerCase().includes(searchTerm) // Search by place (optional, add more search criteria as needed)
+        );
+      });
+
+      this.competS=this.filteredCompetS
+      //this.filteredCompetS= this.filteredCompetS.slice(0,6);
+      if(this.endindex!=undefined)
+        {
+          this.filteredCompetS= this.filteredCompetS.slice(0,this.endindex);
+
+        }
+      else
+        {
+          this.filteredCompetS= this.filteredCompetS.slice(0,6);
+
+
+        }
+
+    }
+
+
+   }
 
 
    applyFilter(event: Event) {
@@ -174,8 +432,19 @@ export class HomeComponent  implements AfterViewInit {
         console.log(1)
         this.http.get(this.dataS.apiPJ+"/compets").subscribe((data:any)=>
           {
+
             this.competS=competCVT.toCompets(JSON.stringify(data))
+
+
+            this.competS.sort((a, b) => b.regis_end.localeCompare(a.regis_end));
+            this.tempcom1=this.competS
+            this.filteredCompetS = this.competS.slice(0,6);
+            this.pageIndex=0
             console.log(this.competS)
+
+
+
+
           })
 
       }
@@ -189,7 +458,7 @@ export class HomeComponent  implements AfterViewInit {
               this.http.get(this.dataS.apiPJ+"/users/id/"+this.uidlocal).subscribe((data:any)=>
                 {
                   this.user1=userCVT.toUser(JSON.stringify(data))
-
+                  this.P_telphone=this.user1[0].phoneNumber
                   console.log(this.user1)
                 })
             }
@@ -256,6 +525,9 @@ export class HomeComponent  implements AfterViewInit {
                       return this.combystatus.some((status: { cid: number; }) => status.cid == com.cid);
                     });
                   })
+                  console.log("-----------")
+                  console.log(this.competM)
+                  console.log("-----------")
 
               }
 
@@ -344,6 +616,43 @@ export class HomeComponent  implements AfterViewInit {
     const millisecondsDiff = today.getTime() - birthDateObj.getTime();
     const ageInYears = Math.floor(millisecondsDiff / (1000 * 60 * 60 * 24 * 365));
     return ageInYears;
+  }
+  onlyNumbers(event: KeyboardEvent) {
+    const char = String.fromCharCode(event.charCode);
+    const charCodeAsNumber = parseInt(char, 10);
+    if (!isNaN(charCodeAsNumber)) {
+      // Allow numbers
+      return;
+    } else if (event.charCode === 8 || event.charCode === 13) {
+      // Allow backspace and enter keys
+      return;
+    }
+    event.preventDefault(); // Prevent non-numeric characters
+  }
+
+
+
+
+  errorCh()
+  {
+    this.error = false; // set error to true
+  }
+
+  successCh()
+  {
+    this.success = false;
+  }
+  Chnodata()
+  {
+    this.nodata = false;
+  }
+  primaryCh()
+  {
+    this.prifull=false;
+  }
+  Chnoemail()
+  {
+    this.noemail=false;
   }
 
 }

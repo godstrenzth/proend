@@ -1,16 +1,15 @@
+
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject  } from '@angular/core';
 import { MAT_DIALOG_DATA  } from '@angular/material/dialog';
 import { DataService } from 'src/app/service/data.service';
 import { Convert as userCVT,User } from 'src/app/model/user.model';
 @Component({
-  selector: 'app-detaildialog',
-  templateUrl: './detaildialog.component.html',
-  styleUrls: ['./detaildialog.component.scss']
+  selector: 'app-detildialogone',
+  templateUrl: './detildialogone.component.html',
+  styleUrls: ['./detildialogone.component.scss']
 })
-
-
-export class DetaildialogComponent {
+export class DetildialogoneComponent {
   user1=Array<User>()
   constructor(
     @Inject(MAT_DIALOG_DATA) public data:any,private http:HttpClient,private dataS:DataService)
@@ -30,5 +29,6 @@ export class DetaildialogComponent {
     const ageInYears = Math.floor(millisecondsDiff / (1000 * 60 * 60 * 24 * 365));
     return ageInYears;
   }
+
 
 }

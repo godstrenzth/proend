@@ -61,6 +61,11 @@ export class DataService {
   ];
 
   constructor() {
-    this.menu = this.menu || 1;
+    if(this.menu == undefined)
+      {
+        this.menu = this.menu || 1;
+
+      }
+
   }
 }

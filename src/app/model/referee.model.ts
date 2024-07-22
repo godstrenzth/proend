@@ -5,9 +5,7 @@
 //   const referee = Convert.toReferee(json);
 
 export interface Referee {
-  rid:         string;
-  cid:         string;
-  user_id:     string;
+  user_id:     number;
   email:       string;
   password:    string;
   fullName:    string;
@@ -15,6 +13,13 @@ export interface Referee {
   brithday:    string;
   phoneNumber: string;
   id_card:     null;
+  aid:         number;
+  tid:         number;
+  type_user:   number;
+  typeID:      number;
+  cid:         number;
+  model:       string;
+  amount:      number;
 }
 
 // Converts JSON strings to/from your types

@@ -6,16 +6,21 @@
 
 export interface Applyuser {
   aid:         number;
-  cid:         number;
-  user_id:     number;
   tid:         number;
+  user_id:     number;
+  type_user:   number;
+  score:       null;
   email:       string;
   password:    string;
   fullName:    string;
   gender:      string;
   brithday:    string;
   phoneNumber: string;
-  id_card:     null;
+  id_card:     string;
+  typeID:      number;
+  cid:         number;
+  model:       string;
+  amount:      number;
 }
 
 // Converts JSON strings to/from your types

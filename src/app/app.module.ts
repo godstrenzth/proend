@@ -36,6 +36,7 @@ import { StatedialogComponent } from './page/statedialog/statedialog.component';
 import { DetaildialogComponent } from './page/detaildialog/detaildialog.component';
 import { CreatedialogComponent } from './page/createdialog/createdialog.component';
 import { FormsModule } from '@angular/forms';
+import { DetildialogoneComponent } from './page/detildialogone/detildialogone.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { FormsModule } from '@angular/forms';
     StatedialogComponent,
     DetaildialogComponent,
     CreatedialogComponent,
+    DetildialogoneComponent,
   ],
   imports: [
     BrowserModule,
