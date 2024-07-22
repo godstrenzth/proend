@@ -1,0 +1,541 @@
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav #sidenav mode="side" opened [position]="'start'" class="app-sidenav">
+    <mat-icon *ngIf="sidenav.opened" (click)="animateSidenav()"class="collapse-sidenav  " >keyboard_backspace</mat-icon>
+
+    <mat-nav-list style="margin-top: 70px;" >
+      <mat-icon *ngIf="!sidenav.opened" class="expand-sidenav" (click)="animateSidenav()" style="margin-left: -10px;" >menu</mat-icon>
+      <div *ngIf="sidenav.opened" style="display: flex;justify-content: center;">
+        <img  style="width: 40%;border-radius: 20%;" src="https://img5.pic.in.th/file/secure-sv1/a832c74c-235a-4a1b-b9e0-0ef64fbf45c3.jpeg" alt="">
+      </div>
+      <div *ngIf="sidenav.opened" style="display: flex;justify-content: center;margin-top: 4px;">
+
+
+        <button mat-raised-button color="primary" style="border-radius:  15px 50px;" *ngIf="statuslocal == 1 " >ID:{{uidlocal}} status:Host</button>
+        <button mat-raised-button color="primary" style="border-radius:  15px 50px;" *ngIf="statuslocal == 2" >ID:{{uidlocal}} status:Referee</button>
+        <button mat-raised-button color="primary" style="border-radius:  15px 50px;" *ngIf="statuslocal == 3" >ID:{{uidlocal}} status:Athlete</button>
+      </div>
+      <mat-list-item (click)="opnediaStatus()">
+
+        <mat-icon matListItemIcon style="color: white;"> manage_accounts</mat-icon>
+        <div matListItemTitle style="color: white;">status</div>
+      </mat-list-item>
+      <mat-list-item  *ngIf="statuslocal == 1 " (click)="opneCDetail()">
+
+        <mat-icon matListItemIcon style="color: white;" > add</mat-icon>
+          <div matListItemTitle style="color: white;">Create</div>
+        </mat-list-item>
+
+      <a (click)="selectmenu(1)">
+        <!-- <a routerLink="/contact"></a> -->
+        <hr>
+        <mat-list-item>
+          <mat-icon matListItemIcon style="color: white;">home</mat-icon>
+          <div matListItemTitle style="color: white;">Home</div>
+        </mat-list-item>
+        </a>
+        <a (click)="selectmenu(2)">
+          <mat-list-item>
+            <mat-icon matListItemIcon style="color: white;">person</mat-icon>
+            <div matListItemTitle style="color: white;">Profile</div>
+          </mat-list-item>
+          </a>
+          <a (click)="selectmenu(3)">
+      <mat-list-item>
+        <mat-icon matListItemIcon style="color: white;">checklist</mat-icon>
+        <div matListItemTitle style="color: white;">MyList</div>
+      </mat-list-item>
+      </a>
+      <a (click)="selectmenu(4)">
+        <mat-list-item>
+          <mat-icon matListItemIcon style="color: white;">groups</mat-icon>
+          <div matListItemTitle style="color: white;">Propulation</div>
+        </mat-list-item>
+        </a>
+        <hr>
+      <div>
+
+        <a routerLink="/">
+          <mat-list-item>
+            <mat-icon matListItemIcon style="color: white;">logout</mat-icon>
+            <div matListItemTitle style="color: white;">Logout</div>
+          </mat-list-item>
+        </a>
+        <hr>
+      </div>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content style="background-color: rgb(199, 152, 243);">
+    <div class="card" style="width: 92%; padding: 1.25rem;
+    border-radius: 0.625rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    align-items: center;
+    margin: 1.25rem;">
+
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" >
+      <mat-tab label="Profile">
+        <div class="fxLayout" style="align-items: center;flex-direction: column;" *ngIf="competM[0] != undefined">
+          <div style=" font-size: 1.5em;font-weight: bold;letter-spacing: 0.1em;margin-top: 20px;"><h3>Profile</h3></div>
+          <br>
+          <!-- <div style="align-self: self-start; margin-left: 33%;width: 38%;"> -->
+          <div style="align-self: self-start;display: flex;flex-wrap: wrap; ">
+            <div class="input-group" style="margin-top: 10px;">
+              <span class="input-group-text" style="background-color: rgb(219, 219, 226);" >Name</span>
+              <input type="text" aria-label="First name" class="form-control" #name [defaultValue]="this.competM[0].competName">
+            </div>
+            <div class="input-group" style="margin-top: 10px;">
+              <span class="input-group-text" style="background-color: rgb(219, 219, 226);">Detail</span>
+              <input type="text" aria-label="First name" class="form-control" #detail [defaultValue]="this.competM[0].detail">
+            </div>
+            <div class="input-group" style="margin-top: 10px;">
+              <span class="input-group-text" style="background-color: rgb(219, 219, 226);">Place</span>
+              <input type="text" aria-label="First name" class="form-control" #place [defaultValue]="this.competM[0].place">
+            </div>
+            <div class="input-group ad" style="margin-top: 10px;flex-wrap: nowrap;">
+              <span class="input-group-text" style="background-color: rgb(219, 219, 226);">Poster</span>
+              <input type="text" style="width: 100%;" aria-label="First name" class="form-control" #poster [value]="this.competM[0].poster" readonly >
+              <input type="file"  id="upposter" style="display: none;" accept="image/*" #img (change)="updatePosterValue(img)">
+
+              <label  for="upposter" class="input-group-text" style="background-color: rgb(249, 167, 249);">Upload Poster</label>
+
+            </div>
+            <div class="input-group" style="margin-top: 10px;">
+              <span class="input-group-text" style="background-color: rgb(219, 219, 226);">Contact</span>
+              <input type="tel" aria-label="First name" class="form-control" #contact [defaultValue]="this.competM[0].contact">
+            </div>
+            <!-- <div class="input-group" style="margin-top: 10px;">
+              <span class="input-group-text" style="background-color: rgb(219, 219, 226);">Time</span>
+              <input type="time" aria-label="First name" class="form-control">
+            </div> -->
+
+            <div class="input-group " style="margin-top: 10px;flex-wrap: nowrap;">
+              <span class="input-group-text" style="background-color: rgb(219, 219, 226);">Closed Date</span>
+              <div style="flex-direction: row;display: flex;width: 100%;">
+                <input class="form-control" matInput [matDatepicker]="picker " style="width: 100%;"
+                 #date [defaultValue]="this.competM[0].regis_end  | date:'dd/MM/yyyy'" [min]="today" readonly>
+                <mat-datepicker-toggle matIconSuffix [for]="picker" style="margin: -5px;color:rgb(216, 70, 253);">
+                </mat-datepicker-toggle>
+                <mat-datepicker touchUi #picker></mat-datepicker>
+              </div>
+            </div>
+
+            <!-- <div class="input-group" style="margin-top: 10px;">
+              <span class="input-group-text" style="background-color: rgb(219, 219, 226);">Closed Date</span>
+              <input type="date" aria-label="First name" class="form-control" #date [defaultValue]="this.competM[0].regis_end" [min]="today">
+            </div> -->
+            <div class="input-group" style="margin-top: 10px;justify-content: center;place-content: center;" *ngIf="img64 != null ">
+              <img src={{img64}} alt="" style="width: 80%; height: 70vh;">
+            </div>
+
+
+
+            <button mat-flat-button color="primary" class="fxLayout" (click)="save(name.value,detail.value,place.value,img,contact.value,date.value)" style="width: 30%;margin-top: 20px;align-items: center;margin-bottom: 10px;justify-content: center;">Save</button>
+            <button mat-flat-button color="accent" class="fxLayout" (click)="randomall2()" style="width: 50%;margin-top: 20px;align-items: center;margin-bottom: 10px;justify-content: center ;margin-left: 10px;">Random Kyorugi</button>
+            <hr style="width: 100%;">
+            <div class="input-group ad" style="margin-top: 10px;width: 100%;flex-wrap: nowrap;display: flex;">
+
+              <span class="input-group-text " style="background-color: rgb(219, 219, 226);">Create Model</span>
+              <mat-select style="padding: 5px;" #sec1>
+                <div *ngFor="let ty of this.TypeVaild">
+                  <mat-option value={{ty.T}}>{{ty.T}}</mat-option>
+                </div>
+              </mat-select>
+              <span class="input-group-text" style="background-color: rgb(249, 167, 249); ">amount</span>
+              <input type="number" aria-label="First name" class="form-control" [(ngModel)]="amount" max="10" min="1" (keyup)="onInput($event)" style="width: 100%;">
+
+              <span (click)="Cmodel1(sec1.value)" class="input-group-text" style="background-color: rgb(249, 167, 249);" >Create</span>
+            </div>
+            <div class="input-group ad" style="margin-top: 10px;width: 100%;flex-wrap: nowrap;display: flex;" *ngIf="creother==true">
+
+              <span class="input-group-text" style="background-color: rgb(219, 219, 226);">[Model Other]</span>
+              <mat-select style="padding: 5px;width: 100%;" #sec2>
+                <div>
+                  <mat-option value="Poomsae">Poomsae</mat-option>
+                  <mat-option value="Kyorugi">Kyorugi</mat-option>
+                </div>
+              </mat-select>
+              <span class="input-group-text" style="background-color: rgb(249, 167, 249); ">Model</span>
+              <input type="text" aria-label="First name" class="form-control" #nameModel style="width: 100%;" >
+              <span class="input-group-text" style="background-color: rgb(249, 167, 249); ">amount</span>
+              <input type="number" aria-label="First name" class="form-control" [(ngModel)]="amountO" max="10" min="1" (keyup)="onInputO($event)" style="width: 100%;">
+              <span class="input-group-text" style="background-color: rgb(249, 167, 249);" (click)="Cmodel2o(sec2.value,nameModel.value)">Create</span>
+            </div>
+            <button mat-flat-button color="primary" (click)="other()" *ngIf="creother==false" class="fxLayout" style="width: 60%;margin-top: 20px;align-items: center;margin-bottom: 10px;justify-content: center;" >Create Model Other</button>
+          </div>
+
+
+
+
+      </div>
+      </mat-tab>
+      <mat-tab label="Detail">
+        <div class="fxLayout" style="align-items: center;flex-direction: column;" *ngIf="competM[0] != undefined">
+          <div style=" font-size: 1.5em;font-weight: bold;letter-spacing: 0.1em;margin-top: 20px;"><h3>Detail</h3></div>
+          <br>
+          <!-- <div style="align-self: self-start; margin-left: 33%;width: 38%;"> -->
+          <div style="align-self: self-start;display: flex;flex-wrap: wrap; ">
+            <div class="input-group" style="margin-top: 10px;">
+              <span class="input-group-text" style="background-color: rgb(219, 219, 226);" >Name</span>
+              <input type="text" aria-label="First name" class="form-control" #name [defaultValue]="this.competM[0].competName"readonly>
+            </div>
+            <div class="input-group" style="margin-top: 10px;">
+              <span class="input-group-text" style="background-color: rgb(219, 219, 226);">Detail</span>
+              <input type="text" aria-label="First name" class="form-control" #detail [defaultValue]="this.competM[0].detail"readonly>
+            </div>
+            <div class="input-group" style="margin-top: 10px;">
+              <span class="input-group-text" style="background-color: rgb(219, 219, 226);">Place</span>
+              <input type="text" aria-label="First name" class="form-control" #place [defaultValue]="this.competM[0].place"readonly>
+            </div>
+
+            <div class="input-group" style="margin-top: 10px;">
+              <span class="input-group-text" style="background-color: rgb(219, 219, 226);">Contact</span>
+              <input type="tel" aria-label="First name" class="form-control" #contact [defaultValue]="this.competM[0].contact"readonly>
+            </div>
+            <!-- <div class="input-group" style="margin-top: 10px;">
+              <span class="input-group-text" style="background-color: rgb(219, 219, 226);">Time</span>
+              <input type="time" aria-label="First name" class="form-control">
+            </div> -->
+            <div class="input-group" style="margin-top: 10px;">
+              <span class="input-group-text" style="background-color: rgb(219, 219, 226);">Closed Date</span>
+              <input type="date" aria-label="First name" class="form-control" #date [defaultValue]="this.competM[0].regis_end" readonly>
+            </div>
+            <div class="input-group" *ngIf="allow &&  this.today<=this.competM[0].regis_end" style="margin-top: 10px;width: 100%;flex-wrap: nowrap;display: flex;" >
+
+
+
+              <mat-select style="padding: 5px;margin-right: 10px;" #sec2>
+                <div *ngFor="let ty of this.Typeforuid">
+                  <mat-option value={{ty.typeID}}>{{ty.model}}</mat-option>
+                </div>
+              </mat-select>
+
+              <button mat-flat-button (click)="regisA(sec2.value)" color="primary" class="fxLayout" style="width: 30%;align-items: center;justify-content: center;">Register</button>
+
+            </div>
+
+
+            <!-- <button mat-flat-button color="accent" class="fxLayout" style="width: 50%;margin-top: 20px;align-items: center;margin-bottom: 10px;justify-content: center ;">Register</button> -->
+            <hr style="width: 100%;">
+
+           </div>
+
+
+
+
+      </div>
+      </mat-tab>
+      <mat-tab label="Athlete">
+        <div class="fxLayout" style="align-items: center;flex-direction: column;">
+          <div style=" font-size: 1.5em;font-weight: bold;margin-bottom: 10px;letter-spacing: 0.1em;margin-top: 20px;"><h3>Athlete</h3></div>
+          <br>
+
+          <div class="input-group" style="margin-top: 10px;flex-wrap: wrap;display: flex;width: 85%;margin-left: 80px; margin-bottom: 10px;justify-content: center;align-content: center;" >
+
+            <span class="input-group-text" style="background-color: rgb(219, 219, 226); border-top-left-radius:0;border-bottom-left-radius:0;">Model</span>
+
+
+            <mat-select style="padding: 5px;margin-right: 10px;width: 80%;" #AthleteselTy [(ngModel)]="selAthleteselTy" (ngModelChange)="Atypesel()" *ngIf="selAthleteselTy != undefined" >
+              <div *ngFor="let ty of this.TypeCid"  >
+                <mat-option  value={{ty.typeID}}>{{ty.model}}</mat-option>
+              </div>
+            </mat-select>
+
+          </div>
+          <div style="align-self: center; margin-left: 10%;width: 38%;margin-bottom: 10px;">
+
+            <table mat-table [dataSource]="tableapplyuser" class="mat-elevation-z8">
+
+              <!--- Note that these columns can be defined in any order.
+                    The actual rendered columns are set as a property on the row definition" -->
+
+              <!-- Position Column -->
+              <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef> ID </th>
+                <td mat-cell *matCellDef="let element"> {{element.user_id}} </td>
+              </ng-container>
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Detail">
+                <th mat-header-cell *matHeaderCellDef> Detail </th>
+                <td mat-cell *matCellDef="let element "> <button mat-flat-button color="primary"   (click)="opnediauserDetailview(element.user_id)">View</button> </td>
+              </ng-container>
+              <!-- Symbol Column -->
+              <!-- <ng-container matColumnDef="symbol">
+                <th mat-header-cell *matHeaderCellDef> Symbol </th>
+                <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+              </ng-container> -->
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>
+
+      </div>
+      </mat-tab>
+      <mat-tab label="Image">
+        <ng-template mat-tab-label>
+          <img style="width: 30px;" src="https://img2.pic.in.th/pic/versus.png" alt="Image">
+        </ng-template>
+        <div class="input-group" style="margin-top: 10px;flex-wrap: wrap;display: flex;width: 85%;margin-left: 80px; margin-bottom: 10px;justify-content: center;align-content: center;" >
+
+          <span class="input-group-text" style="background-color: rgb(219, 219, 226);border-top-left-radius:0;border-bottom-left-radius:0;">Model</span>
+          <mat-select style="padding: 5px;margin-right: 10px;width: 80%;" #AthleteselTy [(ngModel)]="selAthleteselTymatch" (ngModelChange)="Atypeselmatch(AthleteselTy.value)" *ngIf="selAthleteselTy != undefined" >
+            <div *ngFor="let ty of this.TypeCid"  >
+              <mat-option  value={{ty.typeID}}>{{ty.model}}</mat-option>
+            </div>
+          </mat-select>
+
+        </div>
+        <!-- Kyorugi -->
+        <div *ngIf="PandK == true">
+          <adn-single-elimination-tree
+          [tournament]="myTournamentData"
+          [matchTemplate]="myMatchTemplate">
+          </adn-single-elimination-tree>
+
+          <ng-template #myMatchTemplate let-match>
+            <app-match [match]="match"></app-match>
+          </ng-template>
+       </div>
+
+       <!-- //Poomsae -->
+       <div *ngIf="PandK == false" style="max-height: 100vh;max-width: 100%;display: flex;flex-direction: column;margin-left: 85px;">
+        <div *ngFor="let item of applyuserAllforPoomsae let i = index">
+          <div class="card rankM" *ngIf="i==0" style="background-color: #FFDF00;">
+            <div class="imgrank">
+              <img  src="http://127.0.0.1/projectwebapi/images/{{item.id_card}}" alt="">
+            </div>
+            <div class="listP">
+                <h4>{{item.fullName}}</h4>
+                <h3>{{item.score}}</h3>
+            </div>
+            <div class="imgrank" style="align-self: center;margin-left: 10px;">
+              <img src="http://127.0.0.1/projectwebapi/images/num1.png" alt="" style="filter: drop-shadow(2px 4px 6px black) ;">
+            </div>
+          </div>
+
+          <div class="card rankM"  *ngIf="i==1" style="background-color: lightgray;">
+            <div class="imgrank">
+              <img  src="http://127.0.0.1/projectwebapi/images/{{item.id_card}}" alt="">
+            </div>
+            <div class="listP">
+              <h4>{{item.fullName}}</h4>
+              <h3>{{item.score}}</h3>
+          </div>
+          <div class="imgrank" style="align-self: center;margin-left: 10px;">
+            <img src="http://127.0.0.1/projectwebapi/images/num2.png" alt="" style="filter: drop-shadow(2px 4px 6px black);">
+          </div>
+
+          </div>
+
+          <div class="card rankM"  *ngIf="i==2" style="background-color: chocolate;">
+            <div class="imgrank">
+              <img  src="http://127.0.0.1/projectwebapi/images/{{item.id_card}}" alt="">
+            </div>
+            <div class="listP">
+              <h4>{{item.fullName}}</h4>
+              <h3>{{item.score}}</h3>
+          </div>
+          <div class="imgrank" style="align-self: center;margin-left: 10px;">
+            <img src="http://127.0.0.1/projectwebapi/images/num3.png" alt="" style="filter: drop-shadow(2px 4px 6px black);">
+          </div>         </div>
+
+          <div class="card rankS" *ngIf="i>=3" >
+            <div class="imgrank">
+              <img  src="http://127.0.0.1/projectwebapi/images/{{item.id_card}}" alt="">
+            </div>
+            <div class="listP">
+              <h4>{{item.fullName}}</h4>
+              <h3>{{item.score}}</h3>
+          </div>
+          <div class="ih2" style="align-self: center;text-align: center;">
+           <h2 style="margin-right: 10px;">{{i+1}}</h2>
+          </div>
+         </div>
+
+
+
+        </div>
+
+     </div>
+
+      </mat-tab>
+      <mat-tab label="Rank">
+        <div class="fxLayout" style="align-items: center;flex-direction: column;">
+          <div style=" font-size: 1.5em;font-weight: bold;margin-bottom: 10px;letter-spacing: 0.1em;margin-top: 20px;"><h3>Rank</h3></div>
+          <br>
+          <div style="align-self: self-start; margin-left: 25%;width: 45%;">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+              <!--- Note that these columns can be defined in any order.
+                    The actual rendered columns are set as a property on the row definition" -->
+
+              <!-- Position Column -->
+              <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+              </ng-container>
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+              </ng-container>
+
+              <!-- Weight Column -->
+              <ng-container matColumnDef="weight">
+                <th mat-header-cell *matHeaderCellDef> Weight </th>
+                <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+              </ng-container>
+
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="symbol">
+                <th mat-header-cell *matHeaderCellDef> Symbol </th>
+                <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="edit">
+                <th mat-header-cell *matHeaderCellDef>Edit</th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-icon-button (click)="editRow(element)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+            </table>
+          </div>
+
+      </div>
+      </mat-tab>
+      <mat-tab label="Referee">
+        <div class="fxLayout" style="align-items: center;flex-direction: column;">
+          <div style=" font-size: 1.5em;font-weight: bold;margin-bottom: 10px;letter-spacing: 0.1em;margin-top: 20px;"><h3>Referee</h3></div>
+          <br>
+          <div class="start" style="min-width: 50px;margin-bottom: 10px;" >
+            <!-- <div class="input-group ad" style="margin-top: 10px;flex-wrap: nowrap;" *ngFor="let type of TypeCid">
+              <span class="input-group-text" style="background-color: rgb(219, 219, 226);" >{{type.model}}</span>
+              <div *ngFor="let ref of refA">
+                <span class="input-group-text " style="background-color: rgb(0, 241, 101);border-top-left-radius:0;border-bottom-left-radius:0; " *ngIf="ref.typeID == type.typeID" >{{ref.fullName}}</span>
+              </div>
+              <input  style="width: 100%;" type="text" aria-label="First name" class="form-control" placeholder="userID Ex.230 "#rid (keypress)="onlyNumbers($event)" (keydown.enter)="addrid(rid.value,type.typeID)">
+              <span class="input-group-text" style="background-color: rgb(219, 219, 226);" (click)="addrid(rid.value,type.typeID)">Add</span>
+            </div>
+           ------------------- -->
+            <div class="input-group ed" style="margin-top: 10px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 2fr 1fr 1fr));" *ngFor="let type of TypeCid">
+              <span class="input-group-text" style="background-color: rgb(219, 219, 226);border-bottom-left-radius: 0; ">{{ type.model }}</span>
+
+              <div *ngFor="let ref of refA">
+                  <span class="input-group-text" *ngIf="ref.typeID == type.typeID"
+                  style="margin-left: 2px;background-color: rgb(94 243 157);justify-content: space-between;
+                  border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0;">
+                  Referee | ID : {{ ref.fullName }} | {{ref.user_id}}   <mat-icon (click)="delrid(ref.aid)" >cancel</mat-icon>
+                  </span>
+              </div>
+
+              <div style="display: flex; align-items: center;">
+                <input
+                  style="width: 100%;border-top-left-radius: 0;margin-left: 2px;
+                   border-bottom-right-radius: 0;border-top-right-radius: 0"
+                  type="text"
+                  aria-label="First name"
+                  class="form-control"
+                  placeholder="userID Ex.230"
+
+                  #rid
+                  (keypress)="onlyNumbers($event)"
+                  (keydown.enter)="addrid(rid.value, type.typeID)"
+                />
+                <span class="input-group-text" style="background-color: #FB9AD1;border-top-left-radius: 0; border-bottom-left-radius: 0;border-top-right-radius: 0;" (click)="addrid(rid.value, type.typeID)">Add</span>
+              </div>
+            </div>
+        <button mat-flat-button color="primary" class="fxLayout" (click)="opensearch()" style="width: 40%;margin-top: 20px;align-items: center;margin-bottom: 10px;justify-content: center;"> search userID</button>
+
+          <!--
+          // align-self: self-start; margin-left: 33%;
+          <div style="width: 40%; margin-bottom: 20px;">
+            <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
+
+
+              <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element"> {{element.user_id}} </td>
+              </ng-container>
+
+              // Name Column
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="close">
+                <th mat-header-cell *matHeaderCellDef>Cancel</th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-icon-button (click)="editRow(element)">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns3;"></tr>
+            </table>-->
+          </div>
+
+      </div>
+      </mat-tab>
+    </mat-tab-group>
+
+    </div>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+<div class="alert alert-warning fixed-top" *ngIf="nodata == true" (click)="Chnodata()"  style="top: 10%; left: 50%; transform: translate(-50%, -50%);">
+  <div class="icon__wrapper">
+    <mat-icon class="mdi mdi-alert-outline" style="color: white;font-family: 'Material Icons';">warning</mat-icon>
+  </div>
+  <p>Please enter the information again.</p>
+  <p style="color: black;">click to close</p>
+
+</div>
+<div class="alert alert-success fixed-top" *ngIf="success == true" (click)="successCh()"  style="top: 10%; left: 50%; transform: translate(-50%, -50%);">
+  <div class="icon__wrapper">
+    <mat-icon class="mdi mdi-alert-outline" style="color: white;font-family: 'Material Icons';">done</mat-icon>
+  </div>
+  <p>The data has been successfully updated.</p>
+  <p style="color: black;">click to close</p>
+
+</div>
+
+<div class="alert alert-primary fixed-top" *ngIf="prifull == true" (click)="primaryCh()"  style="top: 10%; left: 50%; transform: translate(-50%, -50%);">
+  <div class="icon__wrapper">
+    <mat-icon class="mdi mdi-alert-outline" style="color: white;font-family: 'Material Icons';">warning</mat-icon>
+  </div>
+  <p>Unfortunately, registration has been closed as we have reached our maximum capacity.</p>
+  <p style="color: black;">click to close</p>
+
+</div>
+
+<div class="alert alert-error fixed-top" *ngIf="error == true" (click)="errorCh()"  style="top: 10%; left: 50%; transform: translate(-50%, -50%);">
+  <div class="icon__wrapper">
+    <mat-icon class="mdi mdi-alert-outline" style="color: white;font-family: 'Material Icons';">cancel</mat-icon>
+  </div>
+  <p>An unexpected issue prevented successful processing.</p>
+  <p style="color: black;">click to close</p>
+
+</div>
+
+
+<img class="fixed-top" src="https://img2.pic.in.th/pic/Infinity1x-1.0s-200px-200px-1.gif" alt="" *ngIf="noregis == true"
+style="width: 15%; left: 50%; transform: translate(-50%, 100%); border-radius: 20%;display: flex; align-items: center;"  >

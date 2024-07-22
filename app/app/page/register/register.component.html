@@ -1,0 +1,149 @@
+
+<body>
+<div class="box" >
+  <span class="borderLi"></span>
+   <!-- style="top: 10%; left: 50%; transform: translate(-50%, -50%); -->
+   <h2 style="color: #fff;z-index: 3; transform: translate(20%, 230px);writing-mode: vertical-lr;position: relative;">-- Register --</h2>
+    <hr style="z-index: 3; transform: translate(0, -20%);
+    float: left;
+    border-right: 5px solid #fd5fff;
+    padding-right: 0.5rem;height: 500px;width: 50px;
+    margin-right: 0.5rem;   position: relative;">
+    <form>
+
+      <div style="margin-top: 5px; width: 100%;height: 100%;min-width: 300px;">
+        <div class="inputBox">
+          <input type="text" required="required" #Name>
+          <span>Name*</span>
+          <i></i>
+        </div>
+
+        <div class="inputBox">
+          <input type="text" required="required" #email>
+          <span>Email*</span>
+          <i></i>
+        </div>
+
+        <div class="inputBox">
+          <input type="password" required="required" #pass>
+          <span>Password*</span>
+          <i></i>
+        </div>
+
+
+
+        <div class="inputBox">
+          <input type="text" pattern="[0-9]*"  required="required" (keypress)="onlyNumbers($event)" #phone>
+          <span>Phone</span>
+          <i></i>
+        </div>
+
+        <div class="fxLayout " style="flex-direction: column;justify-content: center;">
+          <div class="inputBox">
+            <mat-select style="padding: 5px;color: #f5f5f5;" placeholder="Gender*"  #gender>
+              <div >
+                <mat-option value="male" color="#fff">male</mat-option>
+                <mat-option value="female"color="#fff">female</mat-option>
+              </div>
+            </mat-select>
+            <i></i>
+          </div>
+
+          <div class="inputBox ok"  style="flex-direction: row;display: flex;">
+            <input class="form-control" matInput [matDatepicker]="picker "   style="width: 100%;"
+            date="dd/MM/yyyy"  placeholder="Choose a date*" [min]="minDate" [max]="maxDate"  #date readonly>
+            <mat-datepicker-toggle matIconSuffix [for]="picker" style="margin: -5px;color:rgb(216, 70, 253);">
+            </mat-datepicker-toggle>
+            <mat-datepicker touchUi #picker></mat-datepicker>
+
+            <i></i>
+          </div>
+
+          <!-- <mat-form-field appearance="outline"color="primary"  >
+            <mat-label>Name</mat-label>
+            <input #Name matInput type="text">
+          </mat-form-field> -->
+
+
+          <!-- <mat-form-field appearance="outline"color="primary"  >
+            <mat-label>Email</mat-label>
+            <input #email matInput type="text">
+          </mat-form-field> -->
+
+          <!-- <mat-form-field appearance="outline" color="primary" >
+            <mat-label>Password</mat-label>
+            <input #pass matInput type="password">
+          </mat-form-field> -->
+
+          <!-- <mat-form-field appearance="outline" color="primary" >
+            <mat-label>Phone</mat-label>
+            <input #phone matInput   type="tel" pattern="[0-9]*" (keypress)="onlyNumbers($event)" >
+          </mat-form-field> -->
+
+
+            <!-- <mat-form-field appearance="outline" color="primary">
+              <mat-label>Choose a date</mat-label>
+              <input matInput [matDatepicker]="datepicker" [min]="minDate" [max]="maxDate"  #date readonly>
+              <mat-datepicker-toggle matIconSuffix [for]="datepicker" style="color: black;"></mat-datepicker-toggle>
+              <mat-datepicker #datepicker color="accent">
+                <mat-datepicker-actions>
+                  <button mat-button matDatepickerCancel>Cancel</button>
+                  <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                </mat-datepicker-actions>
+              </mat-datepicker>
+            </mat-form-field> -->
+
+            <!-- <mat-form-field appearance="outline" color="primary" >
+              <mat-label>Gender</mat-label>
+              <mat-select #gender>
+                <mat-option value="man" color="#fff">ชาย</mat-option>
+                <mat-option value="girl"color="#fff">หญิง</mat-option>
+
+              </mat-select>
+            </mat-form-field> -->
+
+            <input class="customFile" #idcard style="color: #FFCDEA;margin-bottom: 5px;margin-top: 5px;" type="file" accept="image/*" capture >
+              <!-- <div class="inputBox" style="display: flex;flex-direction: row;text-align: center;">
+                <mat-label style="color: #FFCDEA;">IDcard</mat-label>
+                <input style="margin-left: 10px;color: #FFCDEA;  " #idcard  type="file" accept=".pdf" capture>
+
+
+              </div> -->
+
+              <mat-card-actions class="fxLayout" style="flex-direction: row; justify-content: space-around; ">
+                <!--(click)="go(ID1.value,pass.value)" -->
+                <button mat-flat-button color="primary" style="width: 45%;" (click)="register(Name.value,email.value,pass.value,phone.value,date.value,gender.value,idcard)">Sign</button>
+                <button mat-flat-button color="warn" style="width: 45%;" routerLink="/">Back</button>
+              </mat-card-actions>
+
+        </div>
+      </div>
+
+
+
+
+    </form>
+</div>
+  <div class="alert alert-error fixed-top" *ngIf="nodata == true" (click)="Chnodata()"  style="top: 10%; left: 50%; transform: translate(-50%, -50%);">
+    <div class="icon__wrapper">
+      <mat-icon class="mdi mdi-alert-outline" style="color: white;font-family: 'Material Icons';">error</mat-icon>
+    </div>
+    <p>Please enter the information again.</p>
+    <p style="color: black;">click to close</p>
+
+  </div>
+  <div class="alert alert-warning fixed-top" *ngIf="noemail == true" (click)="Chnodataemail()"  style="top: 10%; left: 50%; transform: translate(-50%, -50%);">
+    <div class="icon__wrapper">
+      <mat-icon class="mdi mdi-alert-outline" style="color: white;font-family: 'Material Icons';">warning</mat-icon>
+    </div>
+    <p>Please enter your email address correctly.</p>
+    <p style="color: black;">click to close</p>
+
+  </div>
+
+
+  <img class="fixed-top" src="https://img2.pic.in.th/pic/Infinity1x-1.0s-200px-200px-1.gif" alt="" *ngIf="noregis == true"
+  style="width: 15%; left: 50%; transform: translate(-50%, 100%); border-radius: 20%;display: flex; align-items: center;"  >
+
+</body>
+

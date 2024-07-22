@@ -1,0 +1,38 @@
+
+
+<div class="card1" *ngFor="let user of this.user1"  style=" border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  margin: 20px; flex-wrap: wrap;align-items: center;
+min-height: 450px;max-width: 70vw;
+background-image: url(http://127.0.0.1/projectwebapi/images/prof2.png);
+    background-position: center ;
+    background-size: cover;">
+  <div class="imx" style="background-color: #929191; text-align: center;">
+    <img  src="http://127.0.0.1/projectwebapi/images/{{user.id_card}}" alt="">
+  </div>
+  <br>
+
+  <div class="detail-card" >
+    <div style="text-align: center;margin-top: 150px;filter:  brightness(1.2);">
+
+      <div style=" margin-bottom: 10px;color: #FFCDEA;text-shadow: 1px 1px 2px rgb(204 0 255);">
+        <h4>ID : {{user.user_id}}</h4>
+        <h5> {{user.fullName}}</h5>
+      </div>
+      <div style=" margin-bottom: 10px;color: #FFCDEA;text-shadow: 1px 1px 2px rgb(204 0 255)">
+        <h5>Age: {{ calculateAge(user.brithday) }} Gender:  {{user.gender}}</h5>
+      </div>
+
+      <div style=" margin-bottom: 10px;color: #FFCDEA;text-shadow: 1px 1px 2px rgb(204 0 255);">
+        <h5>Tel : {{user.phoneNumber}}</h5>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="bc" style="text-align: center;margin-top: 30px; ">
+    <h3>TDKcompete</h3>
+    <span style="color: #ffffff;">Card for verifying identity</span>
+
+  </div>
+
+
+</div>

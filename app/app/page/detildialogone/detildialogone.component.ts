@@ -1,0 +1,34 @@
+
+import { HttpClient } from '@angular/common/http';
+import { Component, Inject  } from '@angular/core';
+import { MAT_DIALOG_DATA  } from '@angular/material/dialog';
+import { DataService } from 'src/app/service/data.service';
+import { Convert as userCVT,User } from 'src/app/model/user.model';
+@Component({
+  selector: 'app-detildialogone',
+  templateUrl: './detildialogone.component.html',
+  styleUrls: ['./detildialogone.component.scss']
+})
+export class DetildialogoneComponent {
+  user1=Array<User>()
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data:any,private http:HttpClient,private dataS:DataService)
+  {
+
+    this.http.get(this.dataS.apiPJ+"/users/id/"+data.uid).subscribe((data:any)=>
+      {
+        this.user1=userCVT.toUser(JSON.stringify(data))
+        console.log(this.user1)
+      })
+
+  }
+  calculateAge(birthDate: string): number {
+    const today = new Date();
+    const birthDateObj = new Date(birthDate);
+    const millisecondsDiff = today.getTime() - birthDateObj.getTime();
+    const ageInYears = Math.floor(millisecondsDiff / (1000 * 60 * 60 * 24 * 365));
+    return ageInYears;
+  }
+
+
+}
